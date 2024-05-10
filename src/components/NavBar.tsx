@@ -8,7 +8,7 @@ export default function NavBar() {
           <NavLink to="/">Hjem</NavLink>
         </li>
         <li>
-          <NavLink to="/vidensportalen">Vidensportalen</NavLink>
+          <NavLink to="/vidensportalen">Vidensportalen </NavLink>
         </li>
         <li>
           <NavLink to="/fleksjobberdagen">Fleksjobberdagen</NavLink>
