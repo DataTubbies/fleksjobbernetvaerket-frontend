@@ -1,13 +1,18 @@
 import { fetchPosts } from "@/api/wp-rest";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PostEntry from "@/components/PostEntry";
 
 export default function Artikler() {
   const [posts, setPosts] = useState([]);
 
-  fetchPosts().then((data) => {
-    setPosts(data);
-  });
+  useEffect(() => {
+    async function getPosts() {
+      fetchPosts().then((data) => {
+        setPosts(data);
+      });
+    }
+    getPosts();
+  }, []);
 
   return (
     <div>

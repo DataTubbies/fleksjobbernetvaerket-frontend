@@ -1,3 +1,5 @@
+import WPAPI from "wpapi";
+
 const endpoint = "https://www.fleksjobbernetvaerket.dk/wp-json/wp/v2";
 
 async function fetchPosts() {

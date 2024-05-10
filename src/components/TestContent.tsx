@@ -13,7 +13,7 @@ const TestContent: React.FC = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        setPostContent(data.content.rendered);
+        setPostContent(data.content_raw);
         setPost(data.title.rendered);
       } catch (error) {
         console.error("Error fetching post content:", error);
@@ -45,7 +45,9 @@ const TestContent: React.FC = () => {
               <p className="text-base font-semibold leading-7 text-indigo-600">Deploy faster</p>
               <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{post}</h1>
               <br />
-              <div className="text-gray-900" dangerouslySetInnerHTML={{ __html: postContent }} />
+              <div className="text-gray-900">
+                <p>{postContent}</p>
+              </div>
             </div>
           </div>
         </div>
