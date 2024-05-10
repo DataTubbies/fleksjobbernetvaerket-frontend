@@ -14,7 +14,6 @@ export default function App() {
     <>
       <Header />
       <NavBar />
-      <div className="bg-black text-white">hej søde</div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/vidensportalen" element={<Vidensportalen />} />

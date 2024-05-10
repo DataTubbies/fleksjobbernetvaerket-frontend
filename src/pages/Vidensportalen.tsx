@@ -1,11 +1,13 @@
 import ColorBox from "../components/ColorBox";
+import VidensportalEntry from "@/components/VidensportalEntry";
 
 export default function Vidensportalen() {
   return (
     <>
       <ColorBox />
-      <h1>Vidensportalen</h1>
-      <p>Velkommen til Vidensportalen</p>
+      <VidensportalEntry />
+      <VidensportalEntry />
+      <VidensportalEntry />
     </>
   );
 }
