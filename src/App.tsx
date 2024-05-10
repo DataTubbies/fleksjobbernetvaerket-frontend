@@ -23,6 +23,7 @@ export default function App() {
         <Route path="/jobmuligheder" element={<Jobmuligheder />} />
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/om" element={<Om />} />
+        <Route path="/ordbog" element={<div>Ordbog</div>} />
       </Routes>
     </>
   );
