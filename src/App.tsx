@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Kontakt from "./pages/Kontakt";
 import HomePage from "./pages/HomePage";
@@ -14,7 +15,6 @@ export default function App() {
     <>
       <Header />
       <NavBar />
-      <div className="bg-black text-white">hej søde</div>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/vidensportalen" element={<Vidensportalen />} />
@@ -24,6 +24,7 @@ export default function App() {
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/om" element={<Om />} />
       </Routes>
+      <Footer />
     </>
   );
 }
