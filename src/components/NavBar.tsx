@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 export default function NavBar() {
   return (
-    <nav className="text-[#00555B] w-full font-medium text-xl">
+    <nav className="text-fleks-blue-dark w-full font-medium text-xl">
       <ul className="flex justify-center align-middle gap-5 md:gap-24 py-4">
         <li>
           <NavLink to="/">Hjem</NavLink>
