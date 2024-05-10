@@ -7,7 +7,7 @@ export default function Header() {
         </div>
       </section>
       <section className="flex align-middle justify-center items-center">
-        <button className=" text-xl font-bold px-8 py-4 bg-[#5BA6AB] text-[#FFF] rounded-[25px]">
+        <button className=" text-xl font-bold px-8 py-4 bg-fleks-blue text-[#FFF] rounded-[25px]">
           STØT OS <span className="text-[#5BA6AB]"> ..... </span> 💙
         </button>
       </section>
