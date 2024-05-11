@@ -9,6 +9,7 @@ import Jobmuligheder from "./pages/Jobmuligheder";
 import Om from "./pages/Om";
 import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
+import Ordbog from "./pages/Ordbog";
 
 export default function App() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
         <Route path="/jobmuligheder" element={<Jobmuligheder />} />
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/om" element={<Om />} />
-        <Route path="/ordbog" element={<div>Ordbog</div>} />
+        <Route path="/ordbog" element={<Ordbog />} />
       </Routes>
       <Footer />
     </>

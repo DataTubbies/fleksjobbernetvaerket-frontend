@@ -8,4 +8,10 @@ async function fetchPosts() {
   return data;
 }
 
-export { fetchPosts };
+async function fetchDataById(id: number, type: string) {
+  const res = await fetch(`${endpoint}/${type}/${id}`);
+  const data = await res.json();
+  return data;
+}
+
+export { fetchPosts, fetchDataById };
