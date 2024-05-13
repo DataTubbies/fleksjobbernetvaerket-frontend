@@ -86,9 +86,22 @@ export default function Vidensportalen() {
     ),
   };
 
+  const colorBoxObj = {
+    title: "VIDENSPORTAL",
+    boldText: "Vidensportalen",
+    description:
+      "Vidensportalen på Fleksjobber Netværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
+    reversed: false,
+  };
+
   return (
     <>
-      <ColorBox />
+      <ColorBox
+        title={colorBoxObj.title}
+        boldText={colorBoxObj.boldText}
+        description={colorBoxObj.description}
+        reversed={colorBoxObj.reversed}
+      />
       <VidensportalEntry
         title={artikelEntryObj.title}
         subtitle={artikelEntryObj.subtitle}
