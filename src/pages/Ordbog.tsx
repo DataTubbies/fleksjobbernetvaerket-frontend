@@ -14,14 +14,8 @@ export default function Ordbog() {
       );
 
       const cleanedContentWithoutSpans = cleanedContent
-        .replaceAll(
-          "<span class='stackedheadtitlejt' style='font-weight:bold;'>Betydning/forklaring:</span>",
-          ""
-        )
-        .replaceAll(
-          "<span class='stackedheadtitlejt' style='font-weight:bold;'>Ord/begreb:</span>",
-          ""
-        );
+        .replaceAll("<span class='stackedheadtitlejt' style='font-weight:bold;'>Betydning/forklaring:</span>", "")
+        .replaceAll("<span class='stackedheadtitlejt' style='font-weight:bold;'>Ord/begreb:</span>", "");
 
       setContent(cleanedContentWithoutSpans);
     });
@@ -35,16 +29,11 @@ export default function Ordbog() {
         <div className="absolute w-80 h-72 bg-fleks-blue-light rounded-br-full z-10"></div>
 
         <div className="absolute left-[188px] top-[121px] w-[1184px] h-[143px] text-black text-lg font-medium font-inter z-20">
-          Der er mange begreber at holde styr på når du er visiteret til
-          fleksjob og skal bevæge dig rundt i junglen af begreber, og måske
-          hører du forskellige udlægninger af ordene – har du styr på hvad de
-          betyder? Herunder er en liste med langt de fleste ord der anvendes
-          samt en beskrivelse af dem.
+          Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene – har du styr på hvad de betyder?
+          Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem.
         </div>
 
-        <div className="absolute left-[188px] top-[54px] w-[514px] h-[67px] text-teal-800 text-4xl font-semibold font-inter z-20">
-          ORDBOGEN
-        </div>
+        <div className="absolute left-[188px] top-[54px] w-[514px] h-[67px] text-teal-800 text-4xl font-semibold font-inter z-20">ORDBOGEN</div>
       </div>
       <br />
 
@@ -54,7 +43,7 @@ export default function Ordbog() {
       ></div>
       <br />
 
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+      <div className="p-8" dangerouslySetInnerHTML={{ __html: content }} />
       <br />
 
       <div className="bg-fleks-blue-light h-2 w-full"></div>
