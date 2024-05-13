@@ -8,8 +8,8 @@ async function fetchPosts() {
   return data;
 }
 
-async function fetchDataById(id: number, type: string) {
-  const res = await fetch(`${endpoint}/${type}/${id}`);
+async function fetchDataById(id: number, type: string, query: string = "") {
+  const res = await fetch(`${endpoint}/${type}/${id}${query}`);
   const data = await res.json();
   return data;
 }
