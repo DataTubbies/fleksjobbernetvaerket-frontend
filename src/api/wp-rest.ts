@@ -8,4 +8,10 @@ async function fetchPosts() {
   return data;
 }
 
-export { fetchPosts };
+async function fetchJobs() {
+  const res = await fetch(`${endpoint}/pages/14576?_fields=id,title,content`);
+  const data = await res.json();
+  return data;
+}
+
+export { fetchPosts, fetchJobs };
