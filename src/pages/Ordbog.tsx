@@ -50,7 +50,7 @@ export default function Ordbog() {
       <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
 
-      <div style={{ padding: "40px" }}>
+      <div style={{ padding: "60px" }}>
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </div>
       <br />

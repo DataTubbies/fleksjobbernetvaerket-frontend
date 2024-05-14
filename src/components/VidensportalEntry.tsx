@@ -6,7 +6,7 @@ interface VidensportalEntryProps {
   li: string[];
   description: string;
   svg: JSX.Element;
-  destination: string;
+  to: string;
 }
 
 export default function VidensportalEntry({
@@ -15,10 +15,10 @@ export default function VidensportalEntry({
   li,
   description,
   svg,
-  destination,
+  to,
 }: VidensportalEntryProps) {
   return (
-    <NavLink to={destination}>
+    <NavLink to={to}>
       <div className="grid grid-cols-3 bg-fleks-blue-light relative mx-32 my-10">
         <div className="col-span-1 py-12 bg-fleks-blue-dark text-white font-bold text-2xl text-center">
           <h2>{title}</h2>

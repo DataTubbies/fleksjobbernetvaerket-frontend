@@ -29,7 +29,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    destination: "/artikler",
+    to: "/artikler",
   };
 
   const linksEntryObj = {
@@ -58,7 +58,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    destination: "/links",
+    to: "/linksoghenvisninger",
   };
 
   const ordbogEntryObj = {
@@ -86,7 +86,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    destination: "/ordbog",
+    to: "/ordbog",
   };
 
   const colorBoxObj = {
@@ -111,7 +111,7 @@ export default function Vidensportalen() {
         li={artikelEntryObj.li}
         description={artikelEntryObj.description}
         svg={artikelEntryObj.svg}
-        destination={artikelEntryObj.destination}
+        to={artikelEntryObj.to}
       />
       <VidensportalEntry
         title={linksEntryObj.title}
@@ -119,7 +119,7 @@ export default function Vidensportalen() {
         li={linksEntryObj.li}
         description={linksEntryObj.description}
         svg={linksEntryObj.svg}
-        destination={linksEntryObj.destination}
+        to={linksEntryObj.to}
       />
       <VidensportalEntry
         title={ordbogEntryObj.title}
@@ -127,7 +127,7 @@ export default function Vidensportalen() {
         li={ordbogEntryObj.li}
         description={ordbogEntryObj.description}
         svg={ordbogEntryObj.svg}
-        destination={ordbogEntryObj.destination}
+        to={ordbogEntryObj.to}
       />
     </>
   );
