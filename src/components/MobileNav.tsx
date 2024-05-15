@@ -11,15 +11,6 @@ const MobileNav = () => {
     setNav(!nav);
   };
 
-  // Array containing navigation items
-  const navItems = [
-    { id: 1, text: "Home" },
-    { id: 2, text: "Company" },
-    { id: 3, text: "Resources" },
-    { id: 4, text: "About" },
-    { id: 5, text: "Contact" },
-  ];
-
   return (
     <nav className="text-fleks-blue-dark w-full font-medium text-xl">
       {/* Desktop Navigation */}
@@ -29,7 +20,7 @@ const MobileNav = () => {
 
       {/* Mobile Navigation Icon */}
       <div onClick={handleNav} className="block md:hidden">
-        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={40} />}
+        {nav ? <AiOutlineClose size={40} /> : <AiOutlineMenu size={40} />}
       </div>
 
       {/* Mobile Navigation Menu */}
