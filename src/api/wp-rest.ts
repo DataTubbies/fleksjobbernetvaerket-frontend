@@ -9,8 +9,9 @@ async function fetchPosts() {
 }
 
 async function fetchJobs() {
-  const res = await fetch(`${endpoint}/pages/14576?_fields=id,title,content`);
+  const res = await fetch(`${endpoint}/jobopslag?_fields=acf`);
   const data = await res.json();
+  console.log(data);
   return data;
 }
 
