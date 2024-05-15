@@ -11,12 +11,12 @@ interface VidensportalEntryProps {
 export default function VidensportalEntry({ title, subtitle, li, description, svg }: VidensportalEntryProps) {
   return (
     <NavLink to="/artikler">
-      <div className="grid grid-cols-3 bg-fleks-blue-light relative mx-32 my-10">
-        <div className="col-span-1 py-12 bg-fleks-blue-dark text-white font-bold text-2xl text-center">
+      <div className="grid grid-cols-3 bg-fleks-blue-light relative mx-12 md:mx-32 my-10">
+        <div className="col-span-3 w-full md:col-span-1 py-12 bg-fleks-blue-dark text-white font-bold text-2xl text-center">
           <h2>{title}</h2>
-          <div className=" flex justify-center mt-8">{svg}</div>
+          <div className="flex justify-center mt-8">{svg}</div>
         </div>
-        <div className="col-span-2 grid grid-rows-4">
+        <div className="hidden col-span-2 md:grid grid-rows-4">
           <div className="row-span-3 p-6 bg-fleks-green text-xl font-extralight text-white border-b-8 border-b-fleks-yellow">
             <p>
               <span className="font-bold">{title}</span> {subtitle}
