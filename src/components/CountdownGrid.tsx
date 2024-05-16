@@ -1,4 +1,39 @@
-export default function CountdownGrid() {
+import React, { useState, useEffect } from "react";
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const CountdownGrid: React.FC = () => {
+  const calculateTimeLeft = (): TimeLeft => {
+    const difference = +new Date("2024-11-12") - +new Date();
+    let timeLeft: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+    if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };
+
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  });
+
   return (
     <div className="flex justify-end">
       <article className="grid grid-cols-2 border-b-8 border-fleks-yellow">
@@ -24,8 +59,10 @@ export default function CountdownGrid() {
           <section className="float-right w-[600px] bg-fleks-blue-dark text-white">
             <h2 className="p-8 text-4xl font-semibold">FLEKSJOBBERDAGEN</h2>
             <div className="p-8 text-4xl font-semibold bg-fleks-blue text-fleks-blue-dark">
-              <p>06 : 00 : 05 : 17 : 25 : 04</p>
-              <p>M : U : D : T : M : S</p>
+              <p>
+                {timeLeft.days} : {timeLeft.hours} : {timeLeft.minutes} : {timeLeft.seconds}
+              </p>
+              <p>D : H : M : S</p>
               <p className="text-3xl">Dage til næste omgang!</p>
             </div>
             <div className="p-8 text-3xl font semibold">
@@ -40,4 +77,6 @@ export default function CountdownGrid() {
       </article>
     </div>
   );
-}
+};
+
+export default CountdownGrid;
