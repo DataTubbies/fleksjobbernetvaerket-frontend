@@ -14,4 +14,9 @@ async function fetchDataById(id: number, type: string) {
   return data;
 }
 
-export { fetchPosts, fetchDataById };
+async function fetchData(type: string) {
+  const res = await fetch(`${endpoint}/${type}`);
+  const data = await res.json();
+  return data;
+}
+export { fetchPosts, fetchDataById, fetchData };
