@@ -55,11 +55,11 @@ export default function Jobmuligheder() {
 <>
       <ColorBox {...colorBoxObj} />
   
-  <div className="grid grid-cols-1 grid-rows-2 justify-center py-8 mx-12 md:mx-32 my-10">
+  <div className="grid grid-cols-1 grid-rows-2 justify-center py-8 mx-12 md:mx-32 my-10 shadow-md rounded-sm">
 
       {jobs.map((job) => (
         <div className="border-solid border-b-4 border-fleks-grey" key={job.acf.jobtitel}>
-          <p className="font-bold text-2xl text-fleks-blue-dark my-6">{job.acf.jobtitel}</p>
+          <p className="font-bold text-2xl text-fleks-blue-dark my-0">{job.acf.jobtitel}</p>
           <p className="my-7"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
           <p className="my-7"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
 
