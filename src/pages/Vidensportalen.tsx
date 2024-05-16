@@ -53,7 +53,7 @@ export default function Vidensportalen() {
     title: "VIDENSPORTAL",
     boldText: "Vidensportalen",
     description:
-      "Vidensportalen på Fleksjobber Netværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
+      "på Fleksjobbernetværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
     reversed: false,
   };
 
