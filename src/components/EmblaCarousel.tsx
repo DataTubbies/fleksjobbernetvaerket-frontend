@@ -4,9 +4,10 @@ import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import CarouselBox from "./CarouselBox";
+import { Slide } from "@/pages/HomePage";
 
 type PropType = {
-  slides: number[];
+  slides: Slide[];
   options?: EmblaOptionsType;
 };
 
@@ -20,14 +21,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     <section className="embla">
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
-          {slides.map((index) => (
-            <div className="embla__slide" key={index}>
-              <CarouselBox
-                title="En karrusel med overskrift"
-                link="https://google.com"
-                description="Tekst du kan ændre. Dette vil være HTML baseret så det skalerer korrekt, og du kan linke til hvad du vil samme sted."
-                reversed={index % 2 === 0}
-              />
+          {slides.map((slide) => (
+            <div className="embla__slide" key={slides.indexOf(slide)}>
+              <CarouselBox title={slide.acf.overskrift} link={slide.acf.link} description={slide.acf.tekst} reversed={slides.indexOf(slide) % 2 === 0} />
             </div>
           ))}
         </div>
