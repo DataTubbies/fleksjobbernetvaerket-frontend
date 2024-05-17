@@ -2,8 +2,17 @@ export default function Header() {
   return (
     <header className="grid grid-cols-2 bg-[#242424]">
       <section>
+
+        <div className=" w-72">
+          <img
+            className=" invert brightness-[86%] grayscale"
+            src="https://www.fleksjobbernetvaerket.dk/wp-content/uploads/2014/09/Fleksjobber-Netv%C3%A6rket-logo_rgb.jpg"
+            alt="Logo"
+          />
+
         <div className=" w-48 md:w-72">
           <img className=" invert brightness-[86%] grayscale" src="https://www.fleksjobbernetvaerket.dk/wp-content/uploads/2014/09/Fleksjobber-Netv%C3%A6rket-logo_rgb.jpg" alt="Logo" />
+
         </div>
       </section>
       <section className="flex justify-center items-center">

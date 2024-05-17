@@ -6,13 +6,27 @@ interface VidensportalEntryProps {
   li: string[];
   description: string;
   svg: JSX.Element;
+  to: string;
 }
 
-export default function VidensportalEntry({ title, subtitle, li, description, svg }: VidensportalEntryProps) {
+export default function VidensportalEntry({
+  title,
+  subtitle,
+  li,
+  description,
+  svg,
+  to,
+}: VidensportalEntryProps) {
   return (
+
+    <NavLink to={to}>
+      <div className="grid grid-cols-3 bg-fleks-blue-light relative mx-32 my-10">
+        <div className="col-span-1 py-12 bg-fleks-blue-dark text-white font-bold text-2xl text-center">
+
     <NavLink to="/artikler">
       <div className="grid grid-cols-3 bg-fleks-blue-light relative mx-12 md:mx-32 my-10">
         <div className="col-span-3 w-full md:col-span-1 py-12 bg-fleks-blue-dark text-white font-bold text-2xl text-center">
+
           <h2>{title}</h2>
           <div className="flex justify-center mt-8">{svg}</div>
         </div>
