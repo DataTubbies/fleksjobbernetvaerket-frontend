@@ -65,7 +65,7 @@ const CountdownGrid: React.FC = () => {
               <p>D : T : M : S</p>
               <p className="text-3xl">Dage til næste omgang!</p>
             </div>
-            <div className="p-8 text-3xl font semibold">
+            <div className="p-8 text-3xl font-semibold">
               <p>Kampdag for diversitet og lighed.</p>
               <p>Anden tirsdag i november - hvert år!</p>
             </div>
