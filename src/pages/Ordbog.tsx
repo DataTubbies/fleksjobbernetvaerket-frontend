@@ -12,10 +12,11 @@ interface begreb {
 export default function Ordbog() {
   const [ordbog, setOrdbog] = useState([] as begreb[]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
   useEffect(() => {
     async function getOrdbog() {
-      const ordData = await fetchData("ord?_fields=acf");
+      const ordData = await fetchData("ord?_fields=acf&per_page=100");
       setOrdbog(ordData);
     }
     getOrdbog();
@@ -31,6 +32,24 @@ export default function Ordbog() {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+  };
+
+  const handleSort = () => {
+    const newDirection = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(newDirection);
+
+    const sortedOrdbog = [...ordbog].sort((a, b) => {
+      const ordA = a.acf.ord.toLowerCase();
+      const ordB = b.acf.ord.toLowerCase();
+
+      if (newDirection === "asc") {
+        return ordA < ordB ? -1 : ordA > ordB ? 1 : 0;
+      } else {
+        return ordA > ordB ? -1 : ordA < ordB ? 1 : 0;
+      }
+    });
+
+    setOrdbog(sortedOrdbog);
   };
 
   const filteredOrdbog = ordbog.filter((ord) =>
@@ -51,18 +70,28 @@ export default function Ordbog() {
       <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
 
-      <div className="grid grid-cols-2 items-center justify-between px-32 gap-10">
-        <div className="">
-          <h3 className="font-semibold">ORD/BEGREB</h3>
+      <div className="px-32 h-8"></div>
+      <div className="grid grid-cols-2 items-center justify-between px-32 py-4 ">
+        <div className="flex">
+          <h3 className="text-xl font-semibold">ORD/BEGREB</h3>
+          <img
+            src="../../public/images/sortArrows.svg"
+            alt="Sort Arrows"
+            onClick={handleSort}
+            style={{ cursor: "pointer" }}
+          />
         </div>
-        <div className="flex gap-40">
-          <h3 className="font-semibold">BETYDNING/FORKLARING</h3>
+
+        <div className="grid grid-cols-2 gap-32">
+          <div className="flex">
+            <h3 className="text-xl font-semibold">BETYDNING/FORKLARING</h3>
+          </div>
           <input
             type="text"
-            placeholder="Søg efter begreb...🔎"
+            placeholder="Søg efter begreb..."
             value={searchQuery}
             onChange={handleSearch}
-            className="flex justify-end border rounded"
+            className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none w-full h-8"
           />
         </div>
       </div>
@@ -73,17 +102,14 @@ export default function Ordbog() {
       {filteredOrdbog.map((ord, index) => (
         <div className="px-32" key={index}>
           <div className="flex justify-between items-start">
-            {" "}
             <div className="w-1/2 pr-4">
-              {" "}
               <h2 className="font-semibold">{ord.acf.ord}</h2>
             </div>
-            <div className="w-1/2">
-              {" "}
+            <div className="w-1/2 text-justify">
               <p>{ord.acf.betydning}</p>
             </div>
           </div>
-          <div className="bg-fleks-blue h-px w-full my-4"></div>{" "}
+          <div className="bg-fleks-blue h-px w-full my-4"></div>
         </div>
       ))}
 
