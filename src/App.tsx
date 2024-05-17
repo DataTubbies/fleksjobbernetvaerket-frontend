@@ -1,5 +1,4 @@
 import Header from "./components/Header";
-import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
 import Kontakt from "./pages/Kontakt";
@@ -10,12 +9,13 @@ import Om from "./pages/Om";
 import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
+import MobileNav from "./components/MobileNav";
 
 export default function App() {
   return (
     <>
       <Header />
-      <NavBar />
+      <MobileNav />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/vidensportalen" element={<Vidensportalen />} />

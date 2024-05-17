@@ -97,8 +97,17 @@ export default function Vidensportalen() {
     reversed: false,
   };
 
+  const colorBoxObj = {
+    title: "VIDENSPORTAL",
+    boldText: "Vidensportalen",
+    description:
+      "på Fleksjobbernetværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
+    reversed: false,
+  };
+
   return (
     <>
+
       <ColorBox
         title={colorBoxObj.title}
         boldText={colorBoxObj.boldText}
@@ -129,6 +138,11 @@ export default function Vidensportalen() {
         svg={ordbogEntryObj.svg}
         to={ordbogEntryObj.to}
       />
+
+      <ColorBox title={colorBoxObj.title} boldText={colorBoxObj.boldText} description={colorBoxObj.description} reversed={colorBoxObj.reversed} />
+      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} svg={artikelEntryObj.svg} />
+      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} svg={linksEntryObj.svg} />
+      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} svg={ordbogEntryObj.svg} />
     </>
   );
 }
