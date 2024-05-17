@@ -1,54 +1,98 @@
-import { fetchDataById } from "../api/wp-rest";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fetchData } from "../api/wp-rest";
+import ColorBox from "../components/ColorBox";
+
+interface begreb {
+  acf: {
+    ord: string;
+    betydning: string;
+  };
+}
 
 export default function Ordbog() {
-  const [content, setContent] = useState("");
+  const [ordbog, setOrdbog] = useState([] as begreb[]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetchDataById(9746, "pages").then((data) => {
-      console.log(data);
-
-      const cleanedContent = data.content.rendered.replace(
-        /<p>[^<]*Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene &#8211; har du styr på hvad de betyder\? Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem\.<\/p>/,
-        ""
-      );
-
-      const cleanedContentWithoutSpans = cleanedContent
-        .replaceAll("<span class='stackedheadtitlejt' style='font-weight:bold;'>Betydning/forklaring:</span>", "")
-        .replaceAll("<span class='stackedheadtitlejt' style='font-weight:bold;'>Ord/begreb:</span>", "");
-
-      setContent(cleanedContentWithoutSpans);
-    });
+    async function getOrdbog() {
+      const ordData = await fetchData("ord?_fields=acf");
+      setOrdbog(ordData);
+    }
+    getOrdbog();
   }, []);
 
+  const colorBoxObj = {
+    title: "ORDBOGEN",
+    boldText: "Ordbogen",
+    description:
+      "Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene – har du styr på hvad de betyder? Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem.",
+    reversed: true,
+  };
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredOrdbog = ordbog.filter((ord) =>
+    ord.acf.ord.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div>
-      <div className="relative w-[1411px] h-[331px]">
-        <div className="absolute w-[1411px] h-[331px] bg-yellow-100"></div>
+    <>
+      <ColorBox
+        title={colorBoxObj.title}
+        boldText={colorBoxObj.boldText}
+        description={colorBoxObj.description}
+        reversed={colorBoxObj.reversed}
+      />
 
-        <div className="absolute w-80 h-72 bg-fleks-blue-light rounded-br-full z-10"></div>
+      <br />
 
-        <div className="absolute left-[188px] top-[121px] w-[1184px] h-[143px] text-black text-lg font-medium font-inter z-20">
-          Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene – har du styr på hvad de betyder?
-          Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem.
+      <div className="bg-fleks-blue-light h-2 w-full"></div>
+      <br />
+
+      <div className="grid grid-cols-2 items-center justify-between px-32 gap-10">
+        <div className="">
+          <h3 className="font-semibold">ORD/BEGREB</h3>
         </div>
-
-        <div className="absolute left-[188px] top-[54px] w-[514px] h-[67px] text-teal-800 text-4xl font-semibold font-inter z-20">ORDBOGEN</div>
+        <div className="flex gap-40">
+          <h3 className="font-semibold">BETYDNING/FORKLARING</h3>
+          <input
+            type="text"
+            placeholder="Søg efter begreb...🔎"
+            value={searchQuery}
+            onChange={handleSearch}
+            className="flex justify-end border rounded"
+          />
+        </div>
       </div>
+
+      <br />
       <br />
 
-      <div
-        className="bg-fleks-blue-light h-2
-       w-full"
-      ></div>
-      <br />
+      {filteredOrdbog.map((ord, index) => (
+        <div className="px-32" key={index}>
+          <div className="flex justify-between items-start">
+            {" "}
+            <div className="w-1/2 pr-4">
+              {" "}
+              <h2 className="font-semibold">{ord.acf.ord}</h2>
+            </div>
+            <div className="w-1/2">
+              {" "}
+              <p>{ord.acf.betydning}</p>
+            </div>
+          </div>
+          <div className="bg-fleks-blue h-px w-full my-4"></div>{" "}
+        </div>
+      ))}
 
-      <div className="p-8" dangerouslySetInnerHTML={{ __html: content }} />
+      <br />
       <br />
 
       <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
       <br />
-    </div>
+    </>
   );
 }

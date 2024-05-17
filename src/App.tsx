@@ -8,6 +8,7 @@ import Jobmuligheder from "./pages/Jobmuligheder";
 import Om from "./pages/Om";
 import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
+import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
 
 export default function App() {

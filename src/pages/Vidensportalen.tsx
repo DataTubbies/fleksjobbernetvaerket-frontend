@@ -15,6 +15,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
+    to: "/artikler",
   };
 
   const linksEntryObj = {
@@ -31,6 +32,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
+    to: "/linksoghenvisninger",
   };
 
   const ordbogEntryObj = {
@@ -47,6 +49,7 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
+    to: "/ordbog",
   };
 
   const colorBoxObj = {
@@ -60,9 +63,9 @@ export default function Vidensportalen() {
   return (
     <>
       <ColorBox title={colorBoxObj.title} boldText={colorBoxObj.boldText} description={colorBoxObj.description} reversed={colorBoxObj.reversed} />
-      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} svg={artikelEntryObj.svg} />
-      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} svg={linksEntryObj.svg} />
-      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} svg={ordbogEntryObj.svg} />
+      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} svg={artikelEntryObj.svg} to={artikelEntryObj.to} />
+      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} svg={linksEntryObj.svg} to={linksEntryObj.to} />
+      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} svg={ordbogEntryObj.svg} to={ordbogEntryObj.to} />
     </>
   );
 }
