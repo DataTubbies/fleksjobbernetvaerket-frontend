@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 interface TimeLeft {
   days: number;
@@ -41,10 +42,18 @@ const CountdownGrid: React.FC = () => {
           <div>
             <h2 className="px-8 pb-2 md:pt-2 text-4xl font-bold">FIND MERE INFO</h2>
             <ul className="px-8 underline text-2xl">
-              <li>Artikler</li>
-              <li>Ordbogen</li>
-              <li>Links og henvisninger</li>
-              <li>Mangfoldighedsklubben</li>
+              <NavLink to="/artikler">
+                <li className="hover:text-fleks-blue">Artikler</li>
+              </NavLink>
+              <NavLink to="/ordbog">
+                <li className="hover:text-fleks-blue">Ordbogen</li>
+              </NavLink>
+              <NavLink to="/links">
+                <li className="hover:text-fleks-blue">Links og henvisninger</li>
+              </NavLink>
+              <NavLink to="/mangfoldighedsklubben">
+                <li className="hover:text-fleks-blue">Mangfoldighedsklubben</li>
+              </NavLink>
             </ul>
             <div className="px-8 mt-12 flex justify-center gap-4">
               <img className="w-14" src="../../public/images/facebook.svg" alt="" />
