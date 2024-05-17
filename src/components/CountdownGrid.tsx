@@ -51,6 +51,9 @@ const CountdownGrid: React.FC = () => {
               <NavLink to="/links">
                 <li className="hover:text-fleks-blue">Links og henvisninger</li>
               </NavLink>
+              <NavLink to="/jobmuligheder">
+                <li className="hover:text-fleks-blue">Jobmuligheder</li>
+              </NavLink>
               <NavLink to="/mangfoldighedsklubben">
                 <li className="hover:text-fleks-blue">Mangfoldighedsklubben</li>
               </NavLink>
@@ -79,7 +82,9 @@ const CountdownGrid: React.FC = () => {
               <p>Anden tirsdag i november - hvert år!</p>
             </div>
             <div className="bg-fleks-yellow">
-              <p className="text-center py-6 text-fleks-blue-dark text-xl font-semibold">Læs mere</p>
+              <NavLink to="/fleksjobberdagen">
+                <p className="text-center py-6 text-fleks-blue-dark text-xl font-semibold">Læs mere</p>
+              </NavLink>
             </div>
           </section>
         </div>
