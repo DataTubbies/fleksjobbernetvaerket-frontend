@@ -8,6 +8,7 @@ async function fetchPosts() {
 async function fetchDataById(id: number, type: string) {
   const res = await fetch(`${endpoint}/${type}/${id}`);
   const data = await res.json();
+  return data;
 }
 
 async function fetchJobs() {
@@ -22,4 +23,3 @@ async function fetchData(type: string) {
   return data;
 }
 export { fetchPosts, fetchData, fetchJobs, fetchDataById };
-
