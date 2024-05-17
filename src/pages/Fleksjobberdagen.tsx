@@ -1,68 +1,96 @@
-import { fetchDataById } from "@/api/wp-rest";
+import { fetchDataById, fetchDataByType } from "@/api/wp-rest";
+import ColorBox from "@/components/ColorBox";
+import { format } from "path";
 import { useState, useEffect } from "react";
 
 export default function Fleksjobberdagen() {
-  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   useEffect(() => {
-    fetchDataById(14775, "pages", "?_fields=content,slug,date,id,title").then((data) => {
-      console.log(data);
-
-      if (data) {
-        setContent(cleanData(data.content.rendered));
-        setTitle(cleanTitle(data.title.rendered));
-      }
+    fetchDataByType("fleksjobberdagen_new", "?_fields=acf").then((data) => {
+      console.log(data[0].acf);
+      createArrangorerImageArray(data[0].acf);
+      createPolitikerArray(data[0].acf);
+      createPartierImageArray(data[0].acf);
+      setContent(data[0].acf);
     });
   }, []);
 
   return (
-    <div>
-      <h1 class="text-center pt-5">{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </div>
+    <>
+      <ColorBox title={content.bannerTitle} description={content.bannerText} reversed={false} />
+      <div id="arrangorer" className="justify-items-center">
+        <h1 className="text-xl font-bold text-center py-8">{content.arrangorerTitle}</h1>
+        <div id="arrangorer-grid" className="grid grid-cols-1 px-12 md:grid-cols-2 lg:px-32 lg:grid-cols-4 gap-4 justify-items-center items-center">
+          {content.arrangorerImages && content.arrangorerImages.map((img: string, index: number) => <img key={index} src={img} alt="arrangorer" className="max-w-full max-h-40 object-contain mx-auto" />)}
+        </div>
+      </div>
+      <div id="poltikere" className="justify-items-center">
+        <h1 className="text-xl font-bold text-center py-8">{content.politikereTitle}</h1>
+        <div id="politikere-grid" className="grid grid-cols-1 px-12 md:grid-cols-2 lg:px-32 lg:grid-cols-4 gap-1 justify-items-center items-center">
+          {content.politikere &&
+            content.politikere.map((politiker: any, index: number) => (
+              <div key={index} className="flex flex-col items-center bg-fleks-gray w-60 pb-3 h-60 items">
+                <img src={politiker.img} alt="politiker" className="max-w-full max-h-40 object-contain mx-auto pb-2" />
+                <p className="text-center">{politiker.text}</p>
+              </div>
+            ))}
+        </div>
+        <div id="partier" className="grid grid-cols-1 px-12 md:grid-cols-2 lg:px-32 lg:grid-cols-4 gap-4 justify-items-center items-center">
+          {content.partiLogoer && content.partiLogoer.map((img: string, index: number) => <img key={index} src={img} alt="parti" className="max-w-full max-h-40 object-contain mx-auto" />)}
+        </div>
+      </div>
+    </>
   );
 }
 
-function cleanData(data) {
-  console.log(data);
+function createArrangorerImageArray(data: any) {
+  let imageArray = [];
+  for (let i = 1; i < 10; i++) {
+    if (data[`arrangorerImg${i}`]) {
+      imageArray.push(data[`arrangorerImg${i}`]);
+    }
+    delete data[`arrangorerImg${i}`];
+  }
+  imageArray.filter((str) => str !== "");
 
-  // Fjern class from primær div
-  data = data.replaceAll("pbs-main-wrapper", "justify-center");
-
-  // styling til banner
-  data = data.replaceAll("aligncenter wp-image-14510 size-full", "mx-auto");
-
-  // div til "Arrangører på #fleksjobberdagen"
-  data = data.replaceAll('class="pbs-row" style="min-height: 200px;"', 'class="grid grid-cols-4 gap-4 px-6 items-center"');
-  // div til enkelte arrangører
-  data = data.replaceAll('"pbs-col" style="flex-basis: 25%; justify-content: center;"', '""');
-  data = data.replaceAll('"pbs-col" style="flex-grow: 1; justify-content: center; flex-basis: 25%;"', '""');
-
-  // Padding til "Arrangører på #fleksjobberdagen – tirsdag den 12. november 2024
-  data = data.replaceAll('style="text-align: center;"', 'class="pb-4 text-center"');
-
-  // Grid til politikerbilleder
-  data = data.replaceAll("pbs-row pbs-shadow-simple-4-3", "px-5 grid grid-cols-4 gap-4 drop-shadow-md justify-center");
-
-  // Styling til politikerbilleder
-  data = data.replaceAll("size-medium", "");
-  data = data.replaceAll('style="width: 310px"', "");
-  data = data.replaceAll("wp-caption aligncenter", "justify-center");
-  data = data.replaceAll('style="flex-basis: 25%; justify-content: center; padding-top: 31px;"', "");
-
-  // Grid til partibilleder
-  data = data.replaceAll("pbs-row", "grid grid-cols-4 gap-4 justify-center px-6 pt-6");
-
-  // Styling til partibilleder
-  data = data.replaceAll('style="min-height: 200px; margin-bottom: 53px; margin-top: 24px;"', "");
-
-  data = data.replaceAll('style="min-height: 172px; margin-top: -20px;"', "");
-
+  data.arrangorerImages = imageArray;
   return data;
 }
 
-function cleanTitle(title) {
-  title = title.replaceAll("&#8211;", "-");
-  return title;
+function createPolitikerArray(data: any) {
+  const array = [];
+  for (let i = 1; i < 20; i++) {
+    const politikerObj = {
+      img: "",
+      text: "",
+    };
+    if (data[`politikerImg${i}`]) {
+      politikerObj.img = data[`politikerImg${i}`];
+      politikerObj.text = data[`politikerText${i}`];
+    }
+    if (politikerObj.img !== "") {
+      array.push(politikerObj);
+    }
+    delete data[`politikerText${i}`];
+    delete data[`politikerImg${i}`];
+  }
+  array.filter((obj) => obj.img !== "");
+
+  data.politikere = array;
+  return data;
+}
+
+function createPartierImageArray(data: any) {
+  let imageArray = [];
+  for (let i = 1; i < 10; i++) {
+    if (data[`partiLogo${i}`]) {
+      imageArray.push(data[`partiLogo${i}`]);
+    }
+    delete data[`partiLogo${i}`];
+  }
+  imageArray.filter((str) => str !== "");
+
+  data.partiLogoer = imageArray;
+  return data;
 }
