@@ -13,6 +13,7 @@ export default function ColorBox({ title, boldText, description, reversed }: Col
         <h2 className="text-fleks-blue-dark pt-10 text-3xl font-semibold">{title}</h2>
         <p className=" w-full pt-8 text-lg sm:text-xl">
           <span className="font-semibold">{boldText}</span> {description}
+          <p>hello</p>
         </p>
       </div>
     </div>
