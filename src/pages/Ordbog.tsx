@@ -70,21 +70,23 @@ export default function Ordbog() {
       <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
 
-      <div className="px-32 h-8"></div>
-      <div className="grid grid-cols-2 items-center justify-between px-32 py-4 ">
+      <div className="px-4 sm:px-8 md:px-16 lg:px-32 h-8"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between px-4 sm:px-8 md:px-16 lg:px-32 py-4 gap-4 md:gap-10">
         <div className="flex">
-          <h3 className="text-xl font-semibold">ORD/BEGREB</h3>
+          <h3 className="text-lg md:text-xl font-semibold">ORD/BEGREB</h3>
           <img
             src="../../public/images/sortArrows.svg"
             alt="Sort Arrows"
             onClick={handleSort}
-            style={{ cursor: "pointer" }}
+            className="ml-2 cursor-pointer"
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32">
           <div className="flex">
-            <h3 className="text-xl font-semibold">BETYDNING/FORKLARING</h3>
+            <h3 className="text-lg md:text-xl font-semibold">
+              BETYDNING/FORKLARING
+            </h3>
           </div>
           <input
             type="text"
@@ -100,12 +102,12 @@ export default function Ordbog() {
       <br />
 
       {filteredOrdbog.map((ord, index) => (
-        <div className="px-32" key={index}>
-          <div className="flex justify-between items-start">
-            <div className="w-1/2 pr-4">
+        <div className="px-4 sm:px-8 md:px-16 lg:px-32" key={index}>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div className="md:w-1/2 md:pr-4">
               <h2 className="font-semibold">{ord.acf.ord}</h2>
             </div>
-            <div className="w-1/2 text-justify">
+            <div className="md:w-1/2 text-justify mt-2 md:mt-0">
               <p>{ord.acf.betydning}</p>
             </div>
           </div>
