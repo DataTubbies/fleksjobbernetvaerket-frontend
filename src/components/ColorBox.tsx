@@ -33,6 +33,7 @@ export default function ColorBox({
         </h2>
         <p className=" w-full pt-8 text-xl">
           <span className="font-semibold">{boldText}</span> {description}
+          <p>hello</p>
         </p>
       </div>
     </div>
