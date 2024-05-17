@@ -7,7 +7,7 @@ export default function Header() {
         </div>
       </section>
       <section className="flex justify-center items-center">
-        <button className="text-xl font-bold mt-16 px-8 py-4 bg-fleks-blue text-white rounded-[25px]">
+        <button className=" text-md md:text-xl font-bold mt-4 md:mt-16 py-2 px-8 md:py-4 bg-fleks-blue text-white rounded-[25px]">
           STØT OS <span className="text-2xl"> ♡</span>
         </button>
       </section>
