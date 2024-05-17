@@ -84,7 +84,7 @@ export default function Ordbog() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32">
           <div className="flex">
-            <h3 className="text-lg md:text-xl font-semibold">
+            <h3 className="text-md md:text-xl font-normal md:font-semibold">
               BETYDNING/FORKLARING
             </h3>
           </div>
@@ -102,7 +102,7 @@ export default function Ordbog() {
       <br />
 
       {filteredOrdbog.map((ord, index) => (
-        <div className="px-4 sm:px-8 md:px-16 lg:px-32" key={index}>
+        <div className=" px-16 md:px-16 lg:px-32" key={index}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div className="md:w-1/2 md:pr-4">
               <h2 className="font-semibold">{ord.acf.ord}</h2>
