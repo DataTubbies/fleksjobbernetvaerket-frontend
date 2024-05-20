@@ -1,7 +1,7 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { Routes, Route } from "react-router-dom";
-import Kontakt from "./pages/Kontakt";
+import KontaktSide from "./pages/KontaktSide";
 import HomePage from "./pages/HomePage";
 import Vidensportalen from "./pages/Vidensportalen";
 import Jobmuligheder from "./pages/Jobmuligheder";
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/artikler" element={<Artikler />} />
         <Route path="/fleksjobberdagen" element={<Fleksjobberdagen />} />
         <Route path="/jobmuligheder" element={<Jobmuligheder />} />
-        <Route path="/kontakt" element={<Kontakt />} />
+        <Route path="/kontakt" element={<KontaktSide />} />
         <Route path="/om" element={<Om />} />
         <Route path="/ordbog" element={<Ordbog />} />
       </Routes>
