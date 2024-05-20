@@ -59,11 +59,19 @@ const CountdownGrid: React.FC = () => {
               </NavLink>
             </ul>
             <div className="px-8 mt-12 flex justify-center gap-4">
-              <img className="w-14" src="../../public/images/facebook.svg" alt="" />
-              <img className="w-14" src="../../public/images/instagram.svg" alt="" />
+              <a href="https://www.facebook.com/fleksjob">
+                <img className="w-14" src="../../public/images/facebook.svg" alt="" />
+              </a>
+              <a href="https://www.fleksjobbernetvaerket.dk/feed/">
+                <img className="w-14" src="../../public/images/rs-feed.svg" alt="" />
+              </a>
+              <a href="https://www.instagram.com/fleksjob/">
+                <img className="w-14" src="../../public/images/instagram.svg" alt="" />
+              </a>
+              <a href="https://www.youtube.com/channel/UC_mtsjFmE8zpZJTDUSKwybA">
+                <img className="w-14" src="../../public/images/youtube.svg" alt="" />
+              </a>
               <img className="w-14" src="../../public/images/linkedin.svg" alt="" />
-              <img className="w-14" src="../../public/images/rs-feed.svg" alt="" />
-              <img className="w-14" src="../../public/images/youtube.svg" alt="" />
             </div>
           </div>
         </section>
