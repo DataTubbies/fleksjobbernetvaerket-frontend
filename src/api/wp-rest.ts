@@ -22,4 +22,10 @@ async function fetchData(type: string) {
   const data = await res.json();
   return data;
 }
-export { fetchPosts, fetchData, fetchJobs, fetchDataById };
+async function fetchDataByType(type: string, query: string = "") {
+  const res = await fetch(`${endpoint}/${type}${query}`);
+  const data = await res.json();
+  return data;
+}
+
+export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs };
