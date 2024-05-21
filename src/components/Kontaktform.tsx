@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { submitContactForm } from "@/api/wp-rest";
 
 export default function Kontaktform() {
     const [formData, setFormData] = useState({
+
         firstName: "",
         lastName: "",
         company: "",
@@ -24,31 +26,14 @@ export default function Kontaktform() {
         console.log('Form Data:', formData); // Log form data before sending
 
         try {
-            const response = await fetch('https://www.fleksjobbernetvaerket.dk/wp-json/wp/v2/kontakt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            const data = await response.json();
-
+            const response = await submitContactForm(formData);
             console.log('Response:', response); // Log response
-            console.log('Response Data:', data); // Log response data
 
-            if (response.ok) {
-                alert('Email sent successfully');
-            } else {
-                console.error('There was an error sending the email!', data);
-                alert('There was an error sending the email!');
-            }
-        } catch (error) {
-            console.error('There was an error sending the email!', error);
-            alert('There was an error sending the email!');
         }
-    };
+        catch (error) {
+            console.error('Error submitting form:', error);
+        }
+    }
 
     return (
         <div className="max-w-md mx-auto justify-center justify-items-center px-4 sm:px-0">
