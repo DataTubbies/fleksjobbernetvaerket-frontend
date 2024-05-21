@@ -9,24 +9,29 @@ Author: Yousra Diab
 function handle_contact_form() {
     $response = array();
 
+    // Get the JSON POST data
+    $post_data = json_decode(file_get_contents('php://input'), true);
+
     // Validate and sanitize form data
-    $first_name = isset($_POST['firstName']) ? sanitize_text_field($_POST['firstName']) : '';
-    $last_name = isset($_POST['lastName']) ? sanitize_text_field($_POST['lastName']) : '';
-    $company = isset($_POST['company']) ? sanitize_text_field($_POST['company']) : '';
-    $email = isset($_POST['email']) ? sanitize_email($_POST['email']) : '';
-    $phone = isset($_POST['phone']) ? sanitize_text_field($_POST['phone']) : '';
-    $subject = isset($_POST['subject']) ? sanitize_text_field($_POST['subject']) : '';
-    $message = isset($_POST['message']) ? sanitize_textarea_field($_POST['message']) : '';
+    $firstName = isset($post_data['firstName']) ? sanitize_text_field($post_data['firstName']) : '';
+    $lastName = isset($post_data['lastName']) ? sanitize_text_field($post_data['lastName']) : '';
+    $company = isset($post_data['company']) ? sanitize_text_field($post_data['company']) : '';
+    $email = isset($post_data['email']) ? sanitize_email($post_data['email']) : '';
+    $phone = isset($post_data['phone']) ? sanitize_text_field($post_data['phone']) : '';
+    $subject = isset($post_data['subject']) ? sanitize_text_field($post_data['subject']) : '';
+    $message = isset($post_data['message']) ? sanitize_textarea_field($post_data['message']) : '';
+
+    // Log data to debug (optional, remove in production)
+    error_log('Received Form Data: ' . print_r($post_data, true));
 
     // Prepare email
     $to = 'yousserah@gmail.com';
     $email_subject = 'New Contact Form Submission: ' . $subject;
-    $body = "Name: $first_name $last_name\nCompany: $company\nEmail: $email\nPhone: $phone\nMessage: $message";
+    $body = "Name: $firstName $lastName\nCompany: $company\nEmail: $email\nPhone: $phone\nMessage: $message";
     $headers = array('Content-Type: text/plain; charset=UTF-8');
 
-    // Log data to debug (optional, remove in production)
-    error_log(print_r($_POST, true));
-    error_log($body);
+    // Log email content to debug (optional, remove in production)
+    error_log('Email Body: ' . $body);
 
     // Send email
     $mail_sent = wp_mail($to, $email_subject, $body, $headers);
@@ -43,20 +48,12 @@ function handle_contact_form() {
     wp_send_json($response);
 }
 
-add_action('rest_api_init', function() {
-    register_rest_route('custom/v1', '/contact-form', array(
-        'methods' => 'POST',
-        'callback' => 'handle_contact_form',
-    ));
-});
 function add_cors_support() {
-    // Allow from your specific origin
-    if (isset($_SERVER['HTTP_ORIGIN']) && $_SERVER['HTTP_ORIGIN'] == 'http://localhost:5173') {
-        header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-        header('Access-Control-Allow-Credentials: true');
-        header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
-        header('Access-Control-Allow-Headers: Content-Type, Authorization');
-    }
+    // Allow from any origin
+    header("Access-Control-Allow-Origin: *");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
+    header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
     // Access-Control headers are received during OPTIONS requests
     if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
@@ -69,18 +66,12 @@ function add_cors_support() {
         exit(0);
     }
 }
-add_action('rest_api_init', 'add_cors_support', 15);
 
-    // Access-Control headers are received during OPTIONS requests
+add_action('rest_api_init', 'add_cors_support');
 
 add_action('rest_api_init', function() {
-    register_rest_route('custom/v1', '/contact-form', array(
+    register_rest_route('wp/v2', '/kontakt', array(
         'methods' => 'POST',
         'callback' => 'handle_contact_form',
     ));
 });
-
-// Hook to add CORS headers
-add_action('rest_api_init', function() {
-    add_action('rest_pre_serve_request', 'add_cors_headers');
-}, 15);
