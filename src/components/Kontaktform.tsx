@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Kontaktform () {
+export default function Kontaktform() {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName: "",
@@ -51,10 +51,10 @@ export default function Kontaktform () {
     };
 
     return (
-        <div className="max-w-md mx-auto justify-center justify-items-center">
+        <div className="max-w-md mx-auto justify-center justify-items-center px-4 sm:px-0">
             <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <div className="mb-8 flex">
-                    <div className="w-1/3 mr-4">
+                <div className="mb-8 flex flex-wrap -mx-3">
+                    <div className="w-full sm:w-1/3 px-3 mb-6 sm:mb-0">
                         <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="firstName">
                             Fornavn
                         </label>
@@ -69,7 +69,7 @@ export default function Kontaktform () {
                             required
                         />
                     </div>
-                    <div className="w-1/3 mr-2">
+                    <div className="w-full sm:w-1/3 px-3 mb-6 sm:mb-0">
                         <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="lastName">
                             Efternavn
                         </label>
@@ -84,7 +84,7 @@ export default function Kontaktform () {
                             required
                         />
                     </div>
-                    <div className="w-1/3">
+                    <div className="w-full sm:w-1/3 px-3">
                         <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="company">
                             Virksomhed
                         </label>
@@ -100,8 +100,8 @@ export default function Kontaktform () {
                     </div>
                 </div>
 
-                <div className="mb-4 flex">
-                    <div className="w-1/2 mr-2">
+                <div className="mb-4 flex flex-wrap -mx-3">
+                    <div className="w-full sm:w-1/2 px-3 mb-6 sm:mb-0">
                         <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="email">
                             Email
                         </label>
@@ -116,7 +116,7 @@ export default function Kontaktform () {
                             required
                         />
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-full sm:w-1/2 px-3">
                         <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="phone">
                             Telefon
                         </label>
@@ -132,7 +132,7 @@ export default function Kontaktform () {
                         />
                     </div>
                 </div>
-                <div className="mb-4">
+                <div className="mb-4 px-3">
                     <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="subject">
                         Emne
                     </label>
@@ -147,7 +147,7 @@ export default function Kontaktform () {
                         required
                     />
                 </div>
-                <div className="mb-6">
+                <div className="mb-6 px-3">
                     <label className="block text-fleks-blue-dark text-sm font-semibold mb-2" htmlFor="message">
                         Besked
                     </label>
@@ -162,7 +162,7 @@ export default function Kontaktform () {
                     />
                 </div>
 
-                <div className="flex items-center align-middle justify-center">
+                <div className="flex items-center align-middle justify-center px-3">
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
