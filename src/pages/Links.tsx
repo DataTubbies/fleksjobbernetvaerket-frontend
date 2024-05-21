@@ -10,27 +10,41 @@ interface LinkType {
 }
 
 interface FilteredListType {
-  virksomheder: LinkType[];
-  tal: LinkType[];
-  rådgivning: LinkType[];
-  lovstof: LinkType[];
-  jobportaler: LinkType[];
-  jobcentre: LinkType[];
-  diverse: LinkType[];
-  fagspecefikt: LinkType[];
-  aktørere: LinkType[];
-  andre: LinkType[];
-  grupper: LinkType[];
-  egne: LinkType[];
-  handicap: LinkType[];
+  "Virksomheder der arbejder med fleksjobbere": LinkType[];
+  "Tal og statistik": LinkType[];
+  "Offentlige sider med rådgivning": LinkType[];
+  Lovstof: LinkType[];
+  "Offentlige jobportaler": LinkType[];
+  "Offentlige jobcentre": LinkType[];
+  Diverse: LinkType[];
+  "Diverse (fagspecfikt og emnebasserede) links": LinkType[];
+  "Andre aktører": LinkType[];
+  "Andre jobportaler": LinkType[];
+  "Grupper og Foreninger": LinkType[];
+  "Fleksjobber Netværkets egne links": LinkType[];
+  Handicapforeninger: LinkType[];
 }
 
 export default function Links() {
   const [links, setLinks] = useState<LinkType[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [filteredList, setFilteredList] = useState<FilteredListType>(
-    {} as FilteredListType
-  );
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const [filteredList, setFilteredList] = useState<FilteredListType>({
+    "Virksomheder der arbejder med fleksjobbere": [],
+    "Tal og statistik": [],
+    "Offentlige sider med rådgivning": [],
+    Lovstof: [],
+    "Offentlige jobportaler": [],
+    "Offentlige jobcentre": [],
+    Diverse: [],
+    "Diverse (fagspecfikt og emnebasserede) links": [],
+    "Andre aktører": [],
+    "Andre jobportaler": [],
+    "Grupper og Foreninger": [],
+    "Fleksjobber Netværkets egne links": [],
+    Handicapforeninger: [],
+  });
 
   useEffect(() => {
     async function getLinks() {
@@ -49,268 +63,116 @@ export default function Links() {
   }, []);
 
   useEffect(() => {
-    const newList: FilteredListType = {} as FilteredListType;
-    newList.virksomheder = links.filter(
-      (link) =>
-        link.acf.linkkategori === "Virksomheder der arbejder med fleksjobbere"
+    const filteredLinks = links.filter((link) =>
+      link.acf.linknavn.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    newList.tal = links.filter(
-      (link) => link.acf.linkkategori === "Tal og statistik"
-    );
-    newList.rådgivning = links.filter(
-      (link) => link.acf.linkkategori === "Offentlige sider med rådgivning"
-    );
-    newList.lovstof = links.filter(
-      (link) => link.acf.linkkategori === "Lovstof"
-    );
-    newList.jobportaler = links.filter(
-      (link) => link.acf.linkkategori === "Offentlige jobportaler"
-    );
-    newList.jobcentre = links.filter(
-      (link) => link.acf.linkkategori === "Offentlige jobcentre"
-    );
-    newList.diverse = links.filter(
-      (link) => link.acf.linkkategori === "Diverse"
-    );
-    newList.fagspecefikt = links.filter(
-      (link) =>
-        link.acf.linkkategori === "Diverse (fagspecfikt og emnebasserede) links"
-    );
-    newList.aktørere = links.filter(
-      (link) => link.acf.linkkategori === "Andre aktører"
-    );
-    newList.andre = links.filter(
-      (link) => link.acf.linkkategori === "Andre jobportaler"
-    );
-    newList.grupper = links.filter(
-      (link) => link.acf.linkkategori === "Grupper og Foreninger"
-    );
-    newList.egne = links.filter(
-      (link) => link.acf.linkkategori === "Fleksjobber Netværkets egne links"
-    );
-    newList.handicap = links.filter(
-      (link) => link.acf.linkkategori === "Handicapforeninger"
-    );
+
+    const newList: FilteredListType = {
+      "Virksomheder der arbejder med fleksjobbere": [],
+      "Tal og statistik": [],
+      "Offentlige sider med rådgivning": [],
+      Lovstof: [],
+      "Offentlige jobportaler": [],
+      "Offentlige jobcentre": [],
+      Diverse: [],
+      "Diverse (fagspecfikt og emnebasserede) links": [],
+      "Andre aktører": [],
+      "Andre jobportaler": [],
+      "Grupper og Foreninger": [],
+      "Fleksjobber Netværkets egne links": [],
+      Handicapforeninger: [],
+    };
+
+    filteredLinks.forEach((link) => {
+      switch (link.acf.linkkategori) {
+        case "Virksomheder der arbejder med fleksjobbere":
+          newList["Virksomheder der arbejder med fleksjobbere"].push(link);
+          break;
+        case "Tal og statistik":
+          newList["Tal og statistik"].push(link);
+          break;
+        case "Offentlige sider med rådgivning":
+          newList["Offentlige sider med rådgivning"].push(link);
+          break;
+        case "Lovstof":
+          newList.Lovstof.push(link);
+          break;
+        case "Offentlige jobportaler":
+          newList["Offentlige jobportaler"].push(link);
+          break;
+        case "Offentlige jobcentre":
+          newList["Offentlige jobcentre"].push(link);
+          break;
+        case "Diverse":
+          newList.Diverse.push(link);
+          break;
+        case "Diverse (fagspecfikt og emnebasserede) links":
+          newList["Diverse (fagspecfikt og emnebasserede) links"].push(link);
+          break;
+        case "Andre aktører":
+          newList["Andre aktører"].push(link);
+          break;
+        case "Andre jobportaler":
+          newList["Andre jobportaler"].push(link);
+          break;
+        case "Grupper og Foreninger":
+          newList["Grupper og Foreninger"].push(link);
+          break;
+        case "Fleksjobber Netværkets egne links":
+          newList["Fleksjobber Netværkets egne links"].push(link);
+          break;
+        case "Handicapforeninger":
+          newList.Handicapforeninger.push(link);
+          break;
+        default:
+          break;
+      }
+    });
+
     setFilteredList(newList);
-  }, [links]);
+  }, [links, searchQuery]);
 
-  //   console.log(filteredList);
-
-  //   const categoriesSet = new Set(links.map((link) => link.acf.linkkategori));
-  //   const categoriesList = Array.from(categoriesSet);
-
-  //   console.log(categoriesList);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
 
   return (
     <div>
       <div className="bg-fleks-yellow h-64 float-right w-64 rounded-bl-full"></div>
-      <div className="px-32">
-        <h2 className="font-semibold text-xl">
-          Virksomheder der arbejder med fleksjobbere
-        </h2>
-        {filteredList.virksomheder &&
-          filteredList.virksomheder.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">
-          Tal og statistikTal og statistik
-        </h2>
-        {filteredList.tal &&
-          filteredList.tal.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">
-          Offentlige sider med rådgivning
-        </h2>
-        {filteredList.rådgivning &&
-          filteredList.rådgivning.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Lovstof</h2>
-        {filteredList.lovstof &&
-          filteredList.lovstof.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Offentlige jobportaler</h2>
-        {filteredList.jobportaler &&
-          filteredList.jobportaler.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Offentlige jobcentre</h2>
-        {filteredList.jobcentre &&
-          filteredList.jobcentre.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Diverse</h2>
-        {filteredList.diverse &&
-          filteredList.diverse.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">
-          Diverse (fagspecfikt og emnebasserede) links
-        </h2>
-        {filteredList.fagspecefikt &&
-          filteredList.fagspecefikt.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Andre aktører</h2>
-        {filteredList.aktørere &&
-          filteredList.aktørere.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Andre jobportaler</h2>
-        {filteredList.andre &&
-          filteredList.andre.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Grupper og Foreninger</h2>
-        {filteredList.grupper &&
-          filteredList.grupper.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">
-          Fleksjobber Netværkets egne links
-        </h2>
-        {filteredList.egne &&
-          filteredList.egne.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
-        <h2 className="font-semibold text-xl">Handicapforeninger</h2>
-        {filteredList.handicap &&
-          filteredList.handicap.map((link) => (
-            <>
-              <a
-                key={link.acf.linkadresse}
-                href={link.acf.linkadresse}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {link.acf.linknavn}
-              </a>
-              <br />
-            </>
-          ))}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32">
+        <div className="flex">
+          <h3 className="text-fleks-blue-dark pt-10 text-3xl font-semibold">
+            LINKS & HENVISNINGER
+          </h3>
+        </div>
+        <br />
+        <br />
+        <input
+          type="text"
+          placeholder="Søg..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none w-full h-8"
+        />
       </div>
+
+      <div className="px-32">
+        {Object.entries(filteredList).map(([category, links]) => (
+          <div key={category}>
+            <h2 className="font-semibold text-xl">{category}</h2>
+            {links.map((link) => (
+              <React.Fragment key={link.acf.linkadresse}>
+                <a href={link.acf.linkadresse} target="_blank" rel="noreferrer">
+                  {link.acf.linknavn}
+                </a>
+                <br />
+              </React.Fragment>
+            ))}
+          </div>
+        ))}
+      </div>
+
       <div className="bg-fleks-blue h-64 w-64 rounded-tr-full"></div>
     </div>
   );
