@@ -3,20 +3,17 @@ import { fetchJobs } from "@/api/wp-rest";
 import ColorBox from "@/components/ColorBox";
 
 interface Job {
-acf: {
-  jobtitel: string;
-  Jobbeskrivelse: string;
-  jobtype: string;
-  jobreference: string;
-  url: string;
+  acf: {
+    jobtitel: string;
+    Jobbeskrivelse: string;
+    jobtype: string;
+    jobreference: string;
+    url: string;
+  };
 }
-}
-  
-
 
 export default function Jobmuligheder() {
-
-  const [jobs, setJobs] = useState( [] as Job[]);
+  const [jobs, setJobs] = useState([] as Job[]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,25 +21,13 @@ export default function Jobmuligheder() {
       try {
         const jobs = await fetchJobs();
         setJobs(jobs);
-        
-        // fetchJobs().then((data) => {
-        //   console.log(data);
-          
-        //   setJobs(data);
-
-        //   setLoading(false);
-          
-        // });
         console.log(jobs);
-
       } catch (error) {
         console.error('Error fetching jobs:', error);
-        
       }
+      setLoading(false);
     }
-    getJobs() 
-    setLoading(false)
-    
+    getJobs();
   }, []);
 
   const colorBoxObj = {
@@ -52,28 +37,27 @@ export default function Jobmuligheder() {
   };
 
   return (
-<>
+    <>
       <ColorBox {...colorBoxObj} />
-  
-  <div className="grid grid-cols-1 grid-rows-2 justify-center py-8 mx-12 md:mx-32 my-10 shadow-md rounded-sm">
-
-      {jobs.map((job) => (
-        <div className="border-solid border-b-4 border-fleks-grey" key={job.acf.jobtitel}>
-          <p className="font-bold text-2xl text-fleks-blue-dark my-0">{job.acf.jobtitel}</p>
-          <p className="my-7"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
-          <p className="my-7"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
-
-
-          <p className="my-7"> <span className="font-semibold">Jobbeskrivelse: </span>{job.acf.Jobbeskrivelse}</p>
-          {job.acf.url && (
-              <a className="font-semibold" href={job.acf.url}>Læs mere her</a>
-            )}
-        </div>
-      
-
-      ))}
+      <div className="container mx-auto px-4 py-8">
+        {loading ? (
+          <p>Loading jobs...</p>
+        ) : (
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {jobs.map((job) => (
+              <div className="border border-fleks-grey p-4 rounded-lg shadow-md" key={job.acf.jobtitel}>
+                <h2 className="font-bold text-xl text-fleks-blue-dark">{job.acf.jobtitel}</h2>
+                <p className="my-2"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
+                <p className="my-2"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
+                <p className="my-2"><span className="font-semibold">Jobbeskrivelse: </span>{job.acf.Jobbeskrivelse}</p>
+                {job.acf.url && (
+                  <a className="font-semibold text-fleks-blue hover:underline" href={job.acf.url}>Læs mere her</a>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-
     </>
   );
 }
