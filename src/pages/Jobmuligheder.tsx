@@ -11,8 +11,6 @@ acf: {
   url: string;
 }
 }
-  
-
 
 export default function Jobmuligheder() {
 
@@ -24,17 +22,7 @@ export default function Jobmuligheder() {
       try {
         const jobs = await fetchJobs();
         setJobs(jobs);
-        
-        // fetchJobs().then((data) => {
-        //   console.log(data);
-          
-        //   setJobs(data);
-
-        //   setLoading(false);
-          
-        // });
-        console.log(jobs);
-
+      
       } catch (error) {
         console.error('Error fetching jobs:', error);
         
