@@ -13,9 +13,6 @@ export default function NavBarItems() {
         <NavLink to="/fleksjobberdagen">Fleksjobberdagen</NavLink>
       </li>
       <li className="hover:text-fleks-blue rounded-xl m-2 cursor-pointer duration-300">
-        <NavLink to="/jobmuligheder">Jobmuligheder</NavLink>
-      </li>
-      <li className="hover:text-fleks-blue rounded-xl m-2 cursor-pointer duration-300">
         <NavLink to="/kontakt">Kontakt</NavLink>
       </li>
       <li className="hover:text-fleks-blue rounded-xl m-2 cursor-pointer duration-300">
