@@ -61,9 +61,7 @@ export default function Links() {
   }, []);
 
   useEffect(() => {
-    const filteredLinks = links.filter((link) =>
-      link.acf.linknavn.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredLinks = links.filter((link) => link.acf.linknavn.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const newList: FilteredListType = {
       "Virksomheder der arbejder med fleksjobbere": [],
@@ -135,19 +133,12 @@ export default function Links() {
   };
 
   return (
-
     <div className="relative min-h-screen">
       <div className="bg-fleks-yellow h-64 w-64 rounded-bl-full absolute top-0 right-0"></div>
       <div className="container mx-auto py-10 px-5 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
           <div className="flex flex-col">
-            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6">LINKS & HENVISNINGER</h3>
-          </div>
-
-          <div className="flex flex-col w-full">
-            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">
-              LINKS & HENVISNINGER
-            </h3>
+            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">LINKS & HENVISNINGER</h3>
           </div>
 
           <div className="md:flex-1 z-50 ">
@@ -171,6 +162,8 @@ export default function Links() {
                 {links.map((link) => (
                   <React.Fragment key={link.acf.linkadresse}>
                     <a href={link.acf.linkadresse} target="_blank" rel="noreferrer" className="text-fleks-blue hover:underline">
+                      {link.acf.linknavn}
+                    </a>
                     <br />
                   </React.Fragment>
                 ))}
