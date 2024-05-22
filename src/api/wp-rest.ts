@@ -21,7 +21,9 @@ async function fetchData(type: string) {
   const res = await fetch(`${endpoint}/${type}`);
   const data = await res.json();
   return data;
+
 }
+
 async function fetchDataByType(type: string, query: string = "") {
   const res = await fetch(`${endpoint}/${type}${query}`);
   const data = await res.json();
@@ -40,4 +42,33 @@ async function fetchImgById(id: number) {
   return data;
 }
 
-export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags, fetchImgById };
+async function submitContactForm(formData: any) {
+  try {
+    const response = await fetch(`${endpoint}/kontakt`, {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+      },
+      body: JSON.stringify(formData),
+  });
+
+  const data = await response.json();
+
+  console.log('Response:', response); // Log response
+  console.log('Response Data:', data); // Log response data
+
+  if (response.ok) {
+      alert('Email sent successfully');
+  } else {
+      console.error('There was an error sending the email!', data);
+      alert('There was an error sending the email!');
+  }
+} catch (error) {
+  console.error('There was an error sending the email!', error);
+  alert('There was an error sending the email!');
+}
+
+}
+
+export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags, fetchImgById, submitContactForm };
