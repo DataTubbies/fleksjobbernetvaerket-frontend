@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function PostEntry({ title, excerpt, date, author, link, slug }) {
+export default function PostEntry({ title, excerpt, date, author, link, slug, img }) {
   const [postExcerpt, setPostExcerpt] = useState("");
   const [dateString, setDateString] = useState("");
 
   useEffect(() => {
     try {
-      console.log(excerpt);
-
       setPostExcerpt(excerpt.substring(0, excerpt.indexOf("<a class")));
       setDateString(new Date(date).toLocaleDateString());
-      console.log(postExcerpt);
     } catch (error) {
       console.log(error);
     }

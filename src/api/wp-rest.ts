@@ -1,7 +1,7 @@
 const endpoint = "https://www.fleksjobbernetvaerket.dk/wp-json/wp/v2";
 
-async function fetchPosts() {
-  const res = await fetch(`${endpoint}/posts`);
+async function fetchPosts(page: number) {
+  const res = await fetch(`${endpoint}/posts?per_page=100&page=${page}`);
   const data = await res.json();
   return data;
 }
@@ -29,9 +29,15 @@ async function fetchDataByType(type: string, query: string = "") {
 }
 
 async function fetchTags() {
-  const res = await fetch(`${endpoint}/tags`);
+  const res = await fetch(`${endpoint}/tags?_fields=id,name`);
   const data = await res.json();
   return data;
 }
 
-export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags };
+async function fetchImgById(id: number) {
+  const res = await fetch(`${endpoint}/media/${id}`);
+  const data = await res.json();
+  return data;
+}
+
+export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags, fetchImgById };

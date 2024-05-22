@@ -1,4 +1,4 @@
-import { fetchPosts, fetchTags } from "@/api/wp-rest";
+import { fetchPosts, fetchTags, fetchImgById } from "@/api/wp-rest";
 import { useState, useEffect } from "react";
 import PostEntry from "@/components/PostEntry";
 
@@ -17,14 +17,13 @@ interface PostType {
 }
 
 export default function Artikler() {
-  const [posts, setPosts] = useState<PostType[]>([] as PostType[]);
+  const [posts, setPosts] = useState<PostType[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-  const [tags, setTags] = useState([] as string[]);
-  const [searchedPosts, setSearchedPosts] = useState([] as PostType[]);
+  const [tags, setTags] = useState<string[]>([]);
+  const [searchedPosts, setSearchedPosts] = useState<PostType[]>([]);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(searchQuery);
     setSearchQuery(e.target.value);
   };
 
@@ -46,37 +45,60 @@ export default function Artikler() {
     setSearchedPosts(sortedPosts);
   };
 
+  const handleDateSort = () => {
+    const newDirection = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(newDirection);
+
+    const sortedPosts = [...searchedPosts].sort((a, b) => {
+      const ordA = a.date;
+      const ordB = b.date;
+
+      if (newDirection === "asc") {
+        return ordA < ordB ? -1 : ordA > ordB ? 1 : 0;
+      } else {
+        return ordA > ordB ? -1 : ordA < ordB ? 1 : 0;
+      }
+    });
+
+    setSearchedPosts(sortedPosts);
+  };
+
   useEffect(() => {
-    async function getPosts() {
-      fetchPosts().then((data) => {
-        setPosts(data);
-        setSearchedPosts(data);
-      });
+    async function getPosts(page: number) {
+      const data = await fetchPosts(page);
+      setPosts(data);
+      setSearchedPosts(data);
+      console.log(posts);
     }
-    getPosts();
+    getPosts(1);
   }, []);
 
   useEffect(() => {
     async function getTags() {
-      fetchTags().then((data) => {
-        console.log(data);
-        setTags(data);
-      });
+      const data = await fetchTags();
+      setTags(data);
     }
     getTags();
   }, []);
 
   useEffect(() => {
     const newPosts = posts.filter((post) => post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase()));
-
     setSearchedPosts(newPosts);
-  }, [searchQuery]);
+  }, [searchQuery, posts]);
 
   return (
     <div>
-      <div id="filtering" className="flex justify-between items-center">
-        <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" onClick={handleSort} className="ml-2 cursor-pointer" />
-        <input type="text" placeholder="Søg efter begreb..." value={searchQuery} onChange={handleSearch} className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none w-full h-8" />
+      <div id="filtering" className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4">
+        <div className="flex" onClick={handleSort}>
+          <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer" />
+          <p>Titel</p>
+        </div>
+        <div className="flex" onClick={handleDateSort}>
+          <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer" />
+          <p>Dato</p>
+        </div>
+        <div className="flex" onClick={handleDateSort}></div>
+        <input type="text" placeholder="Søg efter begreb..." value={searchQuery} onChange={handleSearch} className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8" />
       </div>
       {searchedPosts.map((post) => (
         <PostEntry key={post.id} title={post.title.rendered} excerpt={post.excerpt.rendered} date={post.date} author={post.author} link={post.link} slug={post.slug} />
