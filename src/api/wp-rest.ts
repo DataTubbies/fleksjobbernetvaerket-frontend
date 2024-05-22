@@ -21,7 +21,7 @@ async function fetchData(type: string) {
   const res = await fetch(`${endpoint}/${type}`);
   const data = await res.json();
   return data;
- 
+
 }
 
 async function fetchDataByType(type: string, query: string = "") {
