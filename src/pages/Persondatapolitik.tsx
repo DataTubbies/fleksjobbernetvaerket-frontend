@@ -1,9 +1,23 @@
+import { useState, useEffect } from "react";
+import { fetchDataById } from "@/api/wp-rest";
+
 export default function Persondatapolitik() {
+  const [html, setHtml] = useState<string>("");
+
+  useEffect(() => {
+    async function getPersondatapolitik() {
+      const persondatapolitik = await fetchDataById(10166, "pages");
+      setHtml(persondatapolitik.content.rendered.replace(/<p>/g, "<p class='text-lg'>").replace(/<strong>/g, "<strong class='text-2xl'>"));
+    }
+    getPersondatapolitik();
+  }, []);
+
   return (
     <div className="px-32 py-12">
-      <div>
-        <h2 className="text-3xl">Persondatapolitik</h2>
-        <p>Hos Fleksjobber Netværket bestræber vi os altid på at beskytte dine og andres personoplysninger bedst muligt. Det gør vi, fordi vi gerne vil værne om den grundlæggende rettighed til privatlivets fred.</p>
+      <h2 className="text-3xl">Persondatapolitik</h2>
+      <br />
+      <div dangerouslySetInnerHTML={{ __html: html }}>
+        {/* <p>Hos Fleksjobber Netværket bestræber vi os altid på at beskytte dine og andres personoplysninger bedst muligt. Det gør vi, fordi vi gerne vil værne om den grundlæggende rettighed til privatlivets fred.</p>
         <br />
         <p>
           Her i vores persondatapolitik, kan du finde information om hvordan vi behandler og beskytter personoplysninger, når du er besøgende hos os eller benytter dig af vores services, herunder hjemmesiden,
@@ -25,7 +39,7 @@ export default function Persondatapolitik() {
           <a className="text-fleks-blue-dark" href="https://cvrapi.dk/virksomhed/dk/fleksjobber-netvaerket/37109223">
             link.
           </a>
-        </p>
+        </p> */}
       </div>
     </div>
   );
