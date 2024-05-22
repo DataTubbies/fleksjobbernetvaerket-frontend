@@ -21,6 +21,13 @@ async function fetchData(type: string) {
   const res = await fetch(`${endpoint}/${type}`);
   const data = await res.json();
   return data;
+ 
+}
+
+async function fetchDataByType(type: string, query: string = "") {
+  const res = await fetch(`${endpoint}/${type}${query}`);
+  const data = await res.json();
+  return data;
 }
 
 async function submitContactForm(formData: any) {
@@ -51,5 +58,5 @@ async function submitContactForm(formData: any) {
 }
 
 }
-export { fetchPosts, fetchData, fetchJobs, fetchDataById, submitContactForm };
 
+export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, submitContactForm };

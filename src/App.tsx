@@ -10,6 +10,7 @@ import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
+import Persondatapolitik from "./pages/Persondatapolitik";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/kontakt" element={<KontaktSide />} />
         <Route path="/om" element={<Om />} />
         <Route path="/ordbog" element={<Ordbog />} />
+        <Route path="/persondatapolitik" element={<Persondatapolitik />} />
       </Routes>
       <Footer />
     </>
