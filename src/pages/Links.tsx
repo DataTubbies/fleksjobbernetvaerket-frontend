@@ -137,7 +137,7 @@ export default function Links() {
   };
 
   return (
-    <div className="relative bg-gray-100 min-h-screen">
+    <div className="relative min-h-screen">
       <div className="bg-fleks-yellow h-64 w-64 rounded-bl-full absolute top-0 right-0"></div>
       <div className="container mx-auto py-10 px-5 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
@@ -147,7 +147,7 @@ export default function Links() {
             </h3>
           </div>
 
-          <div className="flex flex-col w-full">
+          <div className="z-50  ">
             <input
               type="text"
               placeholder="Søg..."
