@@ -137,43 +137,57 @@ export default function Links() {
   };
 
   return (
-    <div>
-      <div className="bg-fleks-yellow h-64 float-right w-64 rounded-bl-full"></div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32">
-        <div className="flex">
-          <h3 className="text-fleks-blue-dark pt-10 text-3xl font-semibold">
-            LINKS & HENVISNINGER
-          </h3>
-        </div>
-        <br />
-        <br />
-        <input
-          type="text"
-          placeholder="Søg..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none w-full h-8"
-        />
-      </div>
-
-      <div className="px-32">
-        {Object.entries(filteredList).map(([category, links]) => (
-          <div key={category}>
-            <h2 className="font-semibold text-xl">{category}</h2>
-            {links.map((link) => (
-              <React.Fragment key={link.acf.linkadresse}>
-                <a href={link.acf.linkadresse} target="_blank" rel="noreferrer">
-                  {link.acf.linknavn}
-                </a>
-                <br />
-              </React.Fragment>
-            ))}
+    <div className="relative bg-gray-100 min-h-screen">
+      <div className="bg-fleks-yellow h-64 w-64 rounded-bl-full absolute top-0 right-0"></div>
+      <div className="container mx-auto py-10 px-5 md:px-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
+          <div className="flex flex-col">
+            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6">
+              LINKS & HENVISNINGER
+            </h3>
           </div>
-        ))}
-      </div>
 
-      <div className="bg-fleks-blue h-64 w-64 rounded-tr-full"></div>
+          <div className="flex flex-col w-full">
+            <input
+              type="text"
+              placeholder="Søg..."
+              value={searchQuery}
+              onChange={handleSearch}
+              className="border rounded-lg px-4 py-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none shadow-md transition w-full mb-6"
+            />
+          </div>
+        </div>
+
+        <div className="bg-fleks-yellow h-1 w-full my-8"></div>
+
+        <div className="px-5 md:px-0">
+          {Object.entries(filteredList).map(([category, links]) => (
+            <div key={category} className="mb-8">
+              <h2 className="font-semibold text-xl mb-4 text-fleks-blue-dark">
+                {category}
+              </h2>
+              <div className="space-y-2">
+                {links.map((link) => (
+                  <React.Fragment key={link.acf.linkadresse}>
+                    <a
+                      href={link.acf.linkadresse}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-fleks-blue hover:underline"
+                    >
+                      {link.acf.linknavn}
+                    </a>
+                    <br />
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-fleks-yellow h-1 w-full my-8"></div>
+      </div>
+      <div className="bg-fleks-blue h-64 w-64 rounded-tr-full"></div>{" "}
     </div>
   );
 }
