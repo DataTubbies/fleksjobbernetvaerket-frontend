@@ -11,6 +11,7 @@ import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
 import Links from "./pages/Links";
+import Artikel from "./pages/Artikel";
 
 import Persondatapolitik from "./pages/Persondatapolitik";
 import Hjaelp from "./pages/Hjaelp";
@@ -34,6 +35,7 @@ export default function App() {
         <Route path="/links" element={<Links />} />
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
         <Route path="/hjaelp" element={<Hjaelp />} />
+        <Route path="/artikler/:slug" element={<Artikel/>} />
         <Route
           path="/mangfoldighedsklubben"
           element={<Mangfoldighedsklubben />}
