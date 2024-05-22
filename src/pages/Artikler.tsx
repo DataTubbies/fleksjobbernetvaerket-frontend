@@ -59,10 +59,11 @@ export default function Artikler() {
   useEffect(() => {
     async function getTags() {
       fetchTags().then((data) => {
+        console.log(data);
         setTags(data);
       });
     }
-    getPosts();
+    getTags();
   }, []);
 
   useEffect(() => {
