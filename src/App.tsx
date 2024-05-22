@@ -12,6 +12,7 @@ import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
 import Persondatapolitik from "./pages/Persondatapolitik";
 import Hjaelp from "./pages/Hjaelp";
+import Mangfoldighedsklubben from "./pages/Mangfoldighedsklubben";
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/ordbog" element={<Ordbog />} />
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
         <Route path="/hjaelp" element={<Hjaelp />} />
+        <Route path="/mangfoldighedsklubben" element={<Mangfoldighedsklubben />} />
       </Routes>
       <Footer />
     </>
