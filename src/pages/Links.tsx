@@ -142,18 +142,18 @@ export default function Links() {
       <div className="container mx-auto py-10 px-5 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
           <div className="flex flex-col">
-            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6">
+            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">
               LINKS & HENVISNINGER
             </h3>
           </div>
 
-          <div className="z-50  ">
+          <div className="md:flex-1 z-50 ">
             <input
               type="text"
               placeholder="Søg..."
               value={searchQuery}
               onChange={handleSearch}
-              className="border rounded-lg px-4 py-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none shadow-md transition w-full mb-6"
+              className="border rounded-lg px-4 py-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none shadow-md transition w-full mb-6 md:w-2/3"
             />
           </div>
         </div>
