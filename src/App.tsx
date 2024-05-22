@@ -11,6 +11,7 @@ import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
 import Persondatapolitik from "./pages/Persondatapolitik";
+import Hjaelp from "./pages/Hjaelp";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/om" element={<Om />} />
         <Route path="/ordbog" element={<Ordbog />} />
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
+        <Route path="/hjaelp" element={<Hjaelp />} />
       </Routes>
       <Footer />
     </>
