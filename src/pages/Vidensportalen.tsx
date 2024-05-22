@@ -7,6 +7,7 @@ export default function Vidensportalen() {
     subtitle: "indeholder emner som: ",
     li: ["Ansættelse", "Opsigelse", "Kontrakter", "Hjælpemidler", "Bisidderordning", "Mm."],
     description: "Hver artikel er kategoriseret med det man i online-verden kalder for tags, eller søge-ord (altså links der henleder én til artikler og lignende der indeholder disse).",
+    to: "/artikler",
     svg: (
       <svg width="163" height="153" viewBox="0 0 163 153" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -23,6 +24,7 @@ export default function Vidensportalen() {
     li: ["Jobcentre", "Andre aktører", "Jobdatabaser", "Arkiver", "Materiale der omhandler arbejdsmarkedet"],
     description:
       "Har du selv links der er relevante kan du kvit og frit uploade det til vores system. Mangler der nogen, så kontakt Fleksjobber Netværket og gør os opmærksomme på det. Du kan kontakte os både som virksomhed og privatperson her.",
+    to: "/links",
     svg: (
       <svg width="173" height="143" viewBox="0 0 173 143" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -39,6 +41,7 @@ export default function Vidensportalen() {
     li: ["Arbejdsevne", "Helhedsorienteret indsats.", "Ressourceforløbsydelse", "VITAS"],
     description:
       "Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene . Har du styr på hvad de betyder? Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem.",
+    to: "/ordbog",
     svg: (
       <svg width="170" height="151" viewBox="0 0 170 151" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -53,16 +56,16 @@ export default function Vidensportalen() {
     title: "VIDENSPORTAL",
     boldText: "Vidensportalen",
     description:
-      "på Fleksjobbernetværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
+      "Vidensportalen på Fleksjobber Netværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
     reversed: false,
   };
 
   return (
     <>
       <ColorBox title={colorBoxObj.title} boldText={colorBoxObj.boldText} description={colorBoxObj.description} reversed={colorBoxObj.reversed} />
-      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} svg={artikelEntryObj.svg} />
-      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} svg={linksEntryObj.svg} />
-      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} svg={ordbogEntryObj.svg} />
+      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} to={artikelEntryObj.to} svg={artikelEntryObj.svg} />
+      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} to={linksEntryObj.to} svg={linksEntryObj.svg} />
+      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} to={ordbogEntryObj.to} svg={ordbogEntryObj.svg} />
     </>
   );
 }

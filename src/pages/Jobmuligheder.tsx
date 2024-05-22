@@ -21,7 +21,7 @@ export default function Jobmuligheder() {
       try {
         const jobs = await fetchJobs();
         setJobs(jobs);
-        console.log(jobs);
+        
       } catch (error) {
         console.error('Error fetching jobs:', error);
       }
