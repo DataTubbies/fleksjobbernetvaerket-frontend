@@ -3,6 +3,7 @@ import EmblaCarousel from "@/components/EmblaCarousel";
 import CountdownGrid from "@/components/CountdownGrid";
 import { useState, useEffect } from "react";
 import { fetchData } from "@/api/wp-rest";
+import PartnerGrid from "@/components/PartnerGrid";
 
 export interface Slide {
   acf: {
@@ -27,6 +28,10 @@ export default function HomePage() {
     <>
       <EmblaCarousel slides={slides} options={OPTIONS} />
       <CountdownGrid />
+      <div className="bg-fleks-gray h-[30rem]">
+        <h2 className="px-32 py-32 text-8xl font-semibold text-white">Reklamer placeholder</h2>
+      </div>
+      <PartnerGrid />
     </>
   );
 }
