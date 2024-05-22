@@ -10,6 +10,7 @@ import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
+import Links from "./pages/Links";
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/kontakt" element={<Kontakt />} />
         <Route path="/om" element={<Om />} />
         <Route path="/ordbog" element={<Ordbog />} />
+        <Route path="/links" element={<Links />} />
       </Routes>
       <Footer />
     </>

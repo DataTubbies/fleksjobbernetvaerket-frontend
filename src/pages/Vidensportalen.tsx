@@ -15,6 +15,7 @@ export default function Vidensportalen() {
     ],
     description:
       "Hver artikel er kategoriseret med det man i online-verden kalder for tags, eller søge-ord (altså links der henleder én til artikler og lignende der indeholder disse).",
+    to: "/artikler",
     svg: (
       <svg
         width="163"
@@ -29,7 +30,6 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    to: "/artikler",
   };
 
   const linksEntryObj = {
@@ -44,6 +44,7 @@ export default function Vidensportalen() {
     ],
     description:
       "Har du selv links der er relevante kan du kvit og frit uploade det til vores system. Mangler der nogen, så kontakt Fleksjobber Netværket og gør os opmærksomme på det. Du kan kontakte os både som virksomhed og privatperson her.",
+    to: "/links",
     svg: (
       <svg
         width="173"
@@ -58,7 +59,6 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    to: "/linksoghenvisninger",
   };
 
   const ordbogEntryObj = {
@@ -72,6 +72,7 @@ export default function Vidensportalen() {
     ],
     description:
       "Der er mange begreber at holde styr på når du er visiteret til fleksjob og skal bevæge dig rundt i junglen af begreber, og måske hører du forskellige udlægninger af ordene . Har du styr på hvad de betyder? Herunder er en liste med langt de fleste ord der anvendes samt en beskrivelse af dem.",
+    to: "/ordbog",
     svg: (
       <svg
         width="170"
@@ -86,7 +87,6 @@ export default function Vidensportalen() {
         />
       </svg>
     ),
-    to: "/ordbog",
   };
 
   const colorBoxObj = {
@@ -97,17 +97,8 @@ export default function Vidensportalen() {
     reversed: false,
   };
 
-  const colorBoxObj = {
-    title: "VIDENSPORTAL",
-    boldText: "Vidensportalen",
-    description:
-      "på Fleksjobbernetværket samler relevant viden om og for fleksjobbere, virksomheder, jobcenter og andre aktører. Vi har delt vidensportalen op i følgende områder, og disse vil med tiden blive udvidet til flere kategorier. Brug menuen til at finde det du vil læse, eller linkene herunder.",
-    reversed: false,
-  };
-
   return (
     <>
-
       <ColorBox
         title={colorBoxObj.title}
         boldText={colorBoxObj.boldText}
@@ -119,30 +110,25 @@ export default function Vidensportalen() {
         subtitle={artikelEntryObj.subtitle}
         li={artikelEntryObj.li}
         description={artikelEntryObj.description}
-        svg={artikelEntryObj.svg}
         to={artikelEntryObj.to}
+        svg={artikelEntryObj.svg}
       />
       <VidensportalEntry
         title={linksEntryObj.title}
         subtitle={linksEntryObj.subtitle}
         li={linksEntryObj.li}
         description={linksEntryObj.description}
-        svg={linksEntryObj.svg}
         to={linksEntryObj.to}
+        svg={linksEntryObj.svg}
       />
       <VidensportalEntry
         title={ordbogEntryObj.title}
         subtitle={ordbogEntryObj.subtitle}
         li={ordbogEntryObj.li}
         description={ordbogEntryObj.description}
-        svg={ordbogEntryObj.svg}
         to={ordbogEntryObj.to}
+        svg={ordbogEntryObj.svg}
       />
-
-      <ColorBox title={colorBoxObj.title} boldText={colorBoxObj.boldText} description={colorBoxObj.description} reversed={colorBoxObj.reversed} />
-      <VidensportalEntry title={artikelEntryObj.title} subtitle={artikelEntryObj.subtitle} li={artikelEntryObj.li} description={artikelEntryObj.description} svg={artikelEntryObj.svg} />
-      <VidensportalEntry title={linksEntryObj.title} subtitle={linksEntryObj.subtitle} li={linksEntryObj.li} description={linksEntryObj.description} svg={linksEntryObj.svg} />
-      <VidensportalEntry title={ordbogEntryObj.title} subtitle={ordbogEntryObj.subtitle} li={ordbogEntryObj.li} description={ordbogEntryObj.description} svg={ordbogEntryObj.svg} />
     </>
   );
 }

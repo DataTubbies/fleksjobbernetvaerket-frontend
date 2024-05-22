@@ -5,23 +5,21 @@ async function fetchPosts() {
   const data = await res.json();
   return data;
 }
-
-
 async function fetchDataById(id: number, type: string) {
   const res = await fetch(`${endpoint}/${type}/${id}`);
   const data = await res.json();
   return data;
 }
 
+async function fetchJobs() {
+  const res = await fetch(`${endpoint}/jobopslag?_fields=acf`);
+  const data = await res.json();
+  return data;
+}
 
 async function fetchData(type: string) {
   const res = await fetch(`${endpoint}/${type}`);
   const data = await res.json();
   return data;
 }
-
-export { fetchPosts, fetchDataById, fetchData };
-
-
-export { fetchPosts, fetchData };
-
+export { fetchPosts, fetchData, fetchJobs, fetchDataById };

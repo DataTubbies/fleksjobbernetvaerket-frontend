@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 interface TimeLeft {
   days: number;
@@ -35,16 +36,24 @@ const CountdownGrid: React.FC = () => {
   });
 
   return (
-    <div className="flex justify-end">
-      <article className="grid grid-cols-2 border-b-8 border-fleks-yellow">
-        <section className="flex justify-center align-middle items-center px-32 text-fleks-blue-dark">
+    <div className="flex md:justify-end">
+      <article className="grid w-full grid-rows-2 md:grid-rows-1 md:grid-cols-2 border-b-8 border-fleks-yellow">
+        <section className="order-2 md:order-1 flex justify-center align-middle items-center md:px-32 text-fleks-blue-dark">
           <div>
-            <h2 className="px-8 py-2 text-4xl font-bold">FIND MERE INFO</h2>
+            <h2 className="px-8 pb-2 md:pt-2 text-4xl font-bold">FIND MERE INFO</h2>
             <ul className="px-8 underline text-2xl">
-              <li>Artikler</li>
-              <li>Ordbogen</li>
-              <li>Links og henvisninger</li>
-              <li>Mangfoldighedsklubben</li>
+              <NavLink to="/artikler">
+                <li className="hover:text-fleks-blue">Artikler</li>
+              </NavLink>
+              <NavLink to="/ordbog">
+                <li className="hover:text-fleks-blue">Ordbogen</li>
+              </NavLink>
+              <NavLink to="/links">
+                <li className="hover:text-fleks-blue">Links og henvisninger</li>
+              </NavLink>
+              <NavLink to="/mangfoldighedsklubben">
+                <li className="hover:text-fleks-blue">Mangfoldighedsklubben</li>
+              </NavLink>
             </ul>
             <div className="px-8 mt-12 flex justify-center gap-4">
               <img className="w-14" src="../../public/images/facebook.svg" alt="" />
@@ -55,8 +64,8 @@ const CountdownGrid: React.FC = () => {
             </div>
           </div>
         </section>
-        <div className="flex justify-end">
-          <section className="float-right w-[600px] bg-fleks-blue-dark text-white">
+        <div className="order-1 md:order-2 flex md:justify-end">
+          <section className="float-right lg:w-[600px] bg-fleks-blue-dark text-white">
             <h2 className="p-8 text-4xl font-semibold">FLEKSJOBBERDAGEN</h2>
             <div className="p-8 text-4xl font-semibold bg-fleks-blue text-fleks-blue-dark">
               <p>
@@ -65,7 +74,7 @@ const CountdownGrid: React.FC = () => {
               <p>D : T : M : S</p>
               <p className="text-3xl">Dage til næste omgang!</p>
             </div>
-            <div className="p-8 text-3xl font semibold">
+            <div className="p-8 text-3xl font-semibold">
               <p>Kampdag for diversitet og lighed.</p>
               <p>Anden tirsdag i november - hvert år!</p>
             </div>
