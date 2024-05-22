@@ -9,8 +9,8 @@ export default function Kontakt() {
       
       <div className="bg-fleks-blue-dark text-white py-4" > </div>
      
-  <div className="max-w-md mx-auto my-10 align-text-top text-center" >
-    <p className="text-3xl text-black" >Kontakt os</p>
+  <div className=" justify-center text-center px-32 py-12" >
+    <h1 className="text-2xl text-fleks-blue-dark font-semibold" >Kontakt Fleksjobber Netværket</h1>
     <p className="font-semibold my-2">Udfyld felterne for at kontakte netværket
  </p>
   </div>
