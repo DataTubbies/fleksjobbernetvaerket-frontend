@@ -10,7 +10,7 @@ import Fleksjobberdagen from "./pages/Fleksjobberdagen";
 import Artikler from "./pages/Artikler";
 import Ordbog from "./pages/Ordbog";
 import MobileNav from "./components/MobileNav";
-
+import Cookiepolitik from "./pages/Cookiepolitik";
 import Links from "./pages/Links";
 
 import Persondatapolitik from "./pages/Persondatapolitik";
@@ -35,6 +35,7 @@ export default function App() {
 
         <Route path="/links" element={<Links />} />
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
+        <Route path="/cookiepolitik" element={<Cookiepolitik />} />
         <Route path="/hjaelp" element={<Hjaelp />} />
         <Route
           path="/mangfoldighedsklubben"
