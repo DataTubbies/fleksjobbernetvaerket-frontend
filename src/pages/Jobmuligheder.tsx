@@ -39,25 +39,23 @@ export default function Jobmuligheder() {
   return (
     <>
       <ColorBox {...colorBoxObj} />
-      <div className="container mx-auto px-4 py-8">
-        {loading ? (
-          <p>Loading jobs...</p>
-        ) : (
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {jobs.map((job) => (
-              <div className="border border-fleks-grey p-4 rounded-lg shadow-md" key={job.acf.jobtitel}>
-                <h2 className="font-bold text-xl text-fleks-blue-dark">{job.acf.jobtitel}</h2>
-                <p className="my-2"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
-                <p className="my-2"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
-                <p className="my-2"><span className="font-semibold">Jobbeskrivelse: </span>{job.acf.Jobbeskrivelse}</p>
-                {job.acf.url && (
-                  <a className="font-semibold text-fleks-blue hover:underline" href={job.acf.url}>Læs mere her</a>
-                )}
-              </div>
-            ))}
-          </div>
+  
+  <div className="grid grid-cols-1 gap-8 py-8 mx-4 sm:mx-12 md:mx-32 my-10 shadow-md rounded-sm">
+  
+    {jobs.map((job) => (
+      <div className="border-solid border-b-4 border-fleks-grey p-4" key={job.acf.jobtitel}>
+        <p className="font-bold text-xl sm:text-2xl text-fleks-blue-dark my-0">{job.acf.jobtitel}</p>
+        <p className="my-4 sm:my-7"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
+        <p className="my-4 sm:my-7"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
+        <p className="my-4 sm:my-7"> <span className="font-semibold">Jobbeskrivelse: </span>{job.acf.Jobbeskrivelse}</p>
+        {job.acf.url && (
+          <a className="font-semibold text-fleks-blue hover:underline" href={job.acf.url}>Læs mere her</a>
         )}
       </div>
+    ))}
+  
+  </div>
+  
     </>
   );
 }
