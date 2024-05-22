@@ -28,4 +28,10 @@ async function fetchDataByType(type: string, query: string = "") {
   return data;
 }
 
-export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs };
+async function fetchTags() {
+  const res = await fetch(`${endpoint}/tags`);
+  const data = await res.json();
+  return data;
+}
+
+export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags };
