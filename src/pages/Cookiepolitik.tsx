@@ -20,7 +20,7 @@ export default function Cookiepolitik() {
     <div className="px-32 py-12">
       <h2 className="text-3xl">Cookiepolitik</h2>
       <br />
-      <div dangerouslySetInnerHTML={{ __html: html }}></div>
+      <div className="prose" dangerouslySetInnerHTML={{ __html: html }}></div>
     </div>
   );
 }
