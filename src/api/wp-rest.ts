@@ -1,14 +1,29 @@
 const endpoint = "https://www.fleksjobbernetvaerket.dk/wp-json/wp/v2";
 
+interface Posts {
+  id: number;
+  title: {
+    rendered: string;
+  };
+  excerpt: {
+    rendered: string;
+  };
+  date: string;
+  author: number;
+  link: string;
+  slug: string;
+  thumbbail: string;
+}
+
 async function fetchAllPosts() {
-  let allPosts = [];
+  let allPosts = [] as Posts[];
   let page = 1;
   let totalPages = 1;
 
   while (page <= totalPages) {
     const res = await fetch(`${endpoint}/posts?per_page=10&page=${page}`);
     const data = await res.json();
-    totalPages = parseInt(res.headers.get("X-WP-TotalPages"));
+    totalPages = Number(res.headers.get("X-WP-TotalPages"));
     allPosts = allPosts.concat(data);
     page++;
   }
@@ -52,7 +67,17 @@ async function fetchImgById(id: number) {
   return data;
 }
 
-async function submitContactForm(formData: any) {
+interface ContactForm {
+  firstName: string;
+  lastName: string;
+  company: string;
+  email: string;
+  message: string;
+  phone: string;
+  subject: string;
+}
+
+async function submitContactForm(formData: ContactForm) {
   try {
     const response = await fetch(`${endpoint}/kontakt`, {
       method: "POST",
@@ -80,4 +105,4 @@ async function submitContactForm(formData: any) {
   }
 }
 
-export { fetchPosts, fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags, fetchImgById, submitContactForm, fetchAllPosts };
+export { fetchDataById, fetchDataByType, fetchData, fetchJobs, fetchTags, fetchImgById, submitContactForm, fetchAllPosts };

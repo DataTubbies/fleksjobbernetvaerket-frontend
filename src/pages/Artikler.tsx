@@ -1,4 +1,4 @@
-import { fetchTags, fetchAllPosts } from "@/api/wp-rest";
+import { fetchAllPosts } from "@/api/wp-rest";
 import { useState, useEffect } from "react";
 import PostEntry from "@/components/PostEntry";
 
@@ -27,7 +27,6 @@ export default function Artikler() {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-  const [tags, setTags] = useState<string[]>([]);
   const [searchedPosts, setSearchedPosts] = useState<PostType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -85,14 +84,6 @@ export default function Artikler() {
       setLoading(false); // Stop loading
     }
     getPosts();
-  }, []);
-
-  useEffect(() => {
-    async function getTags() {
-      const data = await fetchTags();
-      setTags(data);
-    }
-    getTags();
   }, []);
 
   useEffect(() => {

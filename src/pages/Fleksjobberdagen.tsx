@@ -1,10 +1,28 @@
-import { fetchDataById, fetchDataByType } from "@/api/wp-rest";
+import { fetchDataByType } from "@/api/wp-rest";
 import ColorBox from "@/components/ColorBox";
-import { format } from "path";
 import { useState, useEffect } from "react";
 
+interface politiker {
+  img: string;
+  text: string;
+}
+
+interface FleksjobberdagenType {
+  bannerTitle: string;
+  bannerText: string;
+  arrangorerTitle: string;
+  arrangorerImages: string[];
+  politikereTitle: string;
+  politikere: politiker[];
+  partiLogoer: string[];
+  tilmeldTitle: string;
+  tilmeldPunkter: string[];
+  tilmeldArrangorerLink: string;
+  laesMereLink: string;
+}
+
 export default function Fleksjobberdagen() {
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState<FleksjobberdagenType>({} as FleksjobberdagenType);
 
   useEffect(() => {
     fetchDataByType("fleksjobberdagen_new", "?_fields=acf").then((data) => {
@@ -19,7 +37,7 @@ export default function Fleksjobberdagen() {
 
   return (
     <>
-      <ColorBox title={content.bannerTitle} description={content.bannerText} reversed={false} />
+      <ColorBox title={content.bannerTitle} description={content.bannerText} reversed={false} boldText="" />
       <div id="arrangorer" className="justify-items-center">
         <h1 className="text-xl font-bold text-center py-8 px-12 lg:px-32">{content.arrangorerTitle}</h1>
         <div id="arrangorer-grid" className="grid grid-cols-1 px-12 md:grid-cols-2 lg:px-32 lg:grid-cols-4 gap-4 justify-items-center items-center">
@@ -30,7 +48,7 @@ export default function Fleksjobberdagen() {
         <h1 className="text-xl font-bold text-center py-8 px-12 lg:px-32">{content.politikereTitle}</h1>
         <div id="politikere-grid" className="grid grid-cols-1 px-12 md:grid-cols-3 lg:px-32 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-1 justify-items-center items-center">
           {content.politikere &&
-            content.politikere.map((politiker: any, index: number) => (
+            content.politikere.map((politiker: politiker, index: number) => (
               <div key={index} className="flex flex-col w-48 pb-3 h-60 rounded">
                 <img src={politiker.img} alt="politiker" className="max-w-full max-h-40 object-contain mx-auto py-2" />
                 <p className="text-center inset-x-0 bottom-0">{politiker.text}</p>
@@ -71,8 +89,8 @@ export default function Fleksjobberdagen() {
 }
 
 // There is a duplicate function later. Might aswell combine that to a single..
-function createArrangorerImageArray(data: any) {
-  let imageArray = [];
+function createArrangorerImageArray(data: FleksjobberdagenType) {
+  const imageArray = [];
   for (let i = 1; i < 10; i++) {
     if (data[`arrangorerImg${i}`]) {
       imageArray.push(data[`arrangorerImg${i}`]);

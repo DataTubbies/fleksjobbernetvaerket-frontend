@@ -27,7 +27,6 @@ interface FilteredListType {
 
 export default function Links() {
   const [links, setLinks] = useState<LinkType[]>([]);
-  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const [filteredList, setFilteredList] = useState<FilteredListType>({
@@ -52,7 +51,6 @@ export default function Links() {
         const linkData: LinkType[] = await fetchData("henvisning?_fields=acf&per_page=100");
         setLinks(linkData);
       } catch (err) {
-        setError("Failed to fetch links");
         console.error(err);
       }
     }
@@ -159,7 +157,7 @@ export default function Links() {
             <div key={category} className="mb-8">
               <h2 className="font-semibold text-xl mb-4 text-fleks-blue-dark">{category}</h2>
               <div className="space-y-2">
-                {links.map((link) => (
+                {links.map((link: LinkType) => (
                   <React.Fragment key={link.acf.linkadresse}>
                     <a href={link.acf.linkadresse} target="_blank" rel="noreferrer" className="text-fleks-blue hover:underline">
                       {link.acf.linknavn}
