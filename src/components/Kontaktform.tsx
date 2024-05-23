@@ -149,7 +149,7 @@ export default function Kontaktform() {
 
                 <div className="flex items-center align-middle justify-center px-3">
                     <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        className="bg-fleks-blue-dark hover:bg-fleks-blue text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="submit"
                     >
                         Send

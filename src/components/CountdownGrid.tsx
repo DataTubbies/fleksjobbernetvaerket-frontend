@@ -71,7 +71,9 @@ const CountdownGrid: React.FC = () => {
               <a href="https://www.youtube.com/channel/UC_mtsjFmE8zpZJTDUSKwybA">
                 <img className="w-14" src="../../public/images/youtube.svg" alt="" />
               </a>
+              <a href="https://www.linkedin.com/company/fleksjob/">
               <img className="w-14" src="../../public/images/linkedin.svg" alt="" />
+              </a>
             </div>
           </div>
         </section>

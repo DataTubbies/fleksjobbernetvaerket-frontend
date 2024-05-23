@@ -27,6 +27,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/vidensportalen" element={<Vidensportalen />} />
         <Route path="/artikler" element={<Artikler />} />
+        <Route path="/artikler/:slug" element={<Artikel />} /> {/* Add this route */}
         <Route path="/fleksjobberdagen" element={<Fleksjobberdagen />} />
         <Route path="/jobmuligheder" element={<Jobmuligheder />} />
         <Route path="/kontakt" element={<KontaktSide />} />
@@ -35,7 +36,6 @@ export default function App() {
         <Route path="/links" element={<Links />} />
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
         <Route path="/hjaelp" element={<Hjaelp />} />
-        <Route path="/artikler/:slug" element={<Artikel/>} />
         <Route
           path="/mangfoldighedsklubben"
           element={<Mangfoldighedsklubben />}
