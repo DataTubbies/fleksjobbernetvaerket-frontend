@@ -1,24 +1,24 @@
 import { useState, useEffect } from "react";
 import { fetchDataById } from "@/api/wp-rest";
 
-export default function Persondatapolitik() {
+export default function Cookiepolitik() {
   const [html, setHtml] = useState<string>("");
 
   useEffect(() => {
-    async function getPersondatapolitik() {
-      const persondatapolitik = await fetchDataById(10166, "pages");
+    async function getCookiepolitik() {
+      const cookiepolitik = await fetchDataById(10168, "pages");
       setHtml(
-        persondatapolitik.content.rendered
+        cookiepolitik.content.rendered
           .replace(/<p>/g, "<p class='text-lg'>")
           .replace(/<strong>/g, "<strong class='text-2xl'>")
       );
     }
-    getPersondatapolitik();
+    getCookiepolitik();
   }, []);
 
   return (
     <div className="px-32 py-12">
-      <h2 className="text-3xl">Persondatapolitik</h2>
+      <h2 className="text-3xl">Cookiepolitik</h2>
       <div className="bg-fleks-blue h-1 w-full my-8"></div>
 
       <div className="prose" dangerouslySetInnerHTML={{ __html: html }}></div>

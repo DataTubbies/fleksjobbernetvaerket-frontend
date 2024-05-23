@@ -49,9 +49,7 @@ export default function Links() {
   useEffect(() => {
     async function getLinks() {
       try {
-        const linkData: LinkType[] = await fetchData(
-          "henvisning?_fields=acf&per_page=100"
-        );
+        const linkData: LinkType[] = await fetchData("henvisning?_fields=acf&per_page=100");
         setLinks(linkData);
       } catch (err) {
         setError("Failed to fetch links");
@@ -63,9 +61,7 @@ export default function Links() {
   }, []);
 
   useEffect(() => {
-    const filteredLinks = links.filter((link) =>
-      link.acf.linknavn.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const filteredLinks = links.filter((link) => link.acf.linknavn.toLowerCase().includes(searchQuery.toLowerCase()));
 
     const newList: FilteredListType = {
       "Virksomheder der arbejder med fleksjobbere": [],
@@ -142,9 +138,7 @@ export default function Links() {
       <div className="container mx-auto py-10 px-5 md:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-32 items-center">
           <div className="flex flex-col">
-            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">
-              LINKS & HENVISNINGER
-            </h3>
+            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">LINKS & HENVISNINGER</h3>
           </div>
 
           <div className="md:flex-1 z-50 ">
@@ -163,18 +157,11 @@ export default function Links() {
         <div className="px-5 md:px-0">
           {Object.entries(filteredList).map(([category, links]) => (
             <div key={category} className="mb-8">
-              <h2 className="font-semibold text-xl mb-4 text-fleks-blue-dark">
-                {category}
-              </h2>
+              <h2 className="font-semibold text-xl mb-4 text-fleks-blue-dark">{category}</h2>
               <div className="space-y-2">
                 {links.map((link) => (
                   <React.Fragment key={link.acf.linkadresse}>
-                    <a
-                      href={link.acf.linkadresse}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-fleks-blue hover:underline"
-                    >
+                    <a href={link.acf.linkadresse} target="_blank" rel="noreferrer" className="text-fleks-blue hover:underline">
                       {link.acf.linknavn}
                     </a>
                     <br />

@@ -51,16 +51,29 @@ const CountdownGrid: React.FC = () => {
               <NavLink to="/links">
                 <li className="hover:text-fleks-blue">Links og henvisninger</li>
               </NavLink>
+              <NavLink to="/jobmuligheder">
+                <li className="hover:text-fleks-blue">Jobmuligheder</li>
+              </NavLink>
               <NavLink to="/mangfoldighedsklubben">
                 <li className="hover:text-fleks-blue">Mangfoldighedsklubben</li>
               </NavLink>
             </ul>
             <div className="px-8 mt-12 flex justify-center gap-4">
-              <img className="w-14" src="../../public/images/facebook.svg" alt="" />
-              <img className="w-14" src="../../public/images/instagram.svg" alt="" />
+              <a href="https://www.facebook.com/fleksjob">
+                <img className="w-14" src="../../public/images/facebook.svg" alt="" />
+              </a>
+              <a href="https://www.fleksjobbernetvaerket.dk/feed/">
+                <img className="w-14" src="../../public/images/rs-feed.svg" alt="" />
+              </a>
+              <a href="https://www.instagram.com/fleksjob/">
+                <img className="w-14" src="../../public/images/instagram.svg" alt="" />
+              </a>
+              <a href="https://www.youtube.com/channel/UC_mtsjFmE8zpZJTDUSKwybA">
+                <img className="w-14" src="../../public/images/youtube.svg" alt="" />
+              </a>
+              <a href="https://www.linkedin.com/company/fleksjob/">
               <img className="w-14" src="../../public/images/linkedin.svg" alt="" />
-              <img className="w-14" src="../../public/images/rs-feed.svg" alt="" />
-              <img className="w-14" src="../../public/images/youtube.svg" alt="" />
+              </a>
             </div>
           </div>
         </section>
@@ -79,7 +92,9 @@ const CountdownGrid: React.FC = () => {
               <p>Anden tirsdag i november - hvert år!</p>
             </div>
             <div className="bg-fleks-yellow">
-              <p className="text-center py-6 text-fleks-blue-dark text-xl font-semibold">Læs mere</p>
+              <NavLink to="/fleksjobberdagen">
+                <p className="text-center py-6 text-fleks-blue-dark text-xl font-semibold">Læs mere</p>
+              </NavLink>
             </div>
           </section>
         </div>
