@@ -134,13 +134,13 @@ export default function Artikler() {
           </div>
           <div className="flex justify-center mt-4">
             <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-              Previous
+              ←
             </button>
             <span className="px-4 py-2 mx-2">
-              Page {currentPage} of {totalPages}
+              Side {currentPage} af {totalPages}
             </span>
             <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-              Next
+              →
             </button>
           </div>
           {paginatedPosts.map((post) => (
@@ -148,13 +148,13 @@ export default function Artikler() {
           ))}
           <div className="flex justify-center mt-4">
             <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-              Previous
+              ←
             </button>
             <span className="px-4 py-2 mx-2">
-              Page {currentPage} of {totalPages}
+              Side {currentPage} af {totalPages}
             </span>
             <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-              Next
+              →
             </button>
           </div>
         </>
