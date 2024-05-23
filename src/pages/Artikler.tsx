@@ -14,6 +14,7 @@ interface PostType {
   author: number;
   link: string;
   slug: string;
+  thumbbail: string;
 }
 
 const Loading = () => (
