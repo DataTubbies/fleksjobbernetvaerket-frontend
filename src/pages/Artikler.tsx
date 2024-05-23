@@ -95,9 +95,7 @@ export default function Artikler() {
   }, []);
 
   useEffect(() => {
-    const newPosts = posts.filter((post) =>
-      post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const newPosts = posts.filter((post) => post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase()));
     setSearchedPosts(newPosts);
     setCurrentPage(1);
     setTotalPages(Math.ceil(newPosts.length / postsPerPage));
@@ -115,10 +113,7 @@ export default function Artikler() {
     }
   };
 
-  const paginatedPosts = searchedPosts.slice(
-    (currentPage - 1) * postsPerPage,
-    currentPage * postsPerPage
-  );
+  const paginatedPosts = searchedPosts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
 
   return (
     <div>
@@ -126,80 +121,39 @@ export default function Artikler() {
         <Loading />
       ) : (
         <>
-          <div
-            id="filtering"
-            className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4"
-          >
+          <div id="filtering" className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4">
             <div className="flex" onClick={handleSort}>
-              <img
-                src="../../public/images/sortArrows.svg"
-                alt="Sort Arrows"
-                className="ml-2 cursor-pointer"
-              />
+              <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer" />
               <p className="select-none">Titel</p>
             </div>
             <div className="flex" onClick={handleDateSort}>
-              <img
-                src="../../public/images/sortArrows.svg"
-                alt="Sort Arrows"
-                className="ml-2 cursor-pointer"
-              />
+              <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer" />
               <p className="select-none">Dato</p>
             </div>
-            <input
-              type="text"
-              placeholder="Søg efter titel..."
-              value={searchQuery}
-              onChange={handleSearch}
-              className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8"
-            />
+            <input type="text" placeholder="Søg efter titel..." value={searchQuery} onChange={handleSearch} className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8" />
           </div>
           <div className="flex justify-center mt-4">
-            <button
-              onClick={goToPreviousPage}
-              disabled={currentPage === 1}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
-            >
+            <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
               ←
             </button>
             <span className="px-4 py-2 mx-2">
               Side {currentPage} af {totalPages}
             </span>
-            <button
-              onClick={goToNextPage}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
-            >
+            <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
               →
             </button>
           </div>
           {paginatedPosts.map((post) => (
-            <PostEntry
-              key={post.id}
-              title={post.title.rendered}
-              excerpt={post.excerpt.rendered}
-              date={post.date}
-              author={post.author}
-              link={post.link}
-              slug={post.slug}
-            />
+            <PostEntry key={post.id} title={post.title.rendered} excerpt={post.excerpt.rendered} date={post.date} author={post.author} link={post.link} slug={post.slug} />
           ))}
           <div className="flex justify-center mt-4">
-            <button
-              onClick={goToPreviousPage}
-              disabled={currentPage === 1}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
-            >
+            <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
               ←
             </button>
             <span className="px-4 py-2 mx-2">
               Side {currentPage} af {totalPages}
             </span>
-            <button
-              onClick={goToNextPage}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
-            >
+            <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
               →
             </button>
           </div>

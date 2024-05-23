@@ -29,7 +29,7 @@ export default function PostEntry({ title, excerpt, date, author, link, slug, im
               <a href={link} target="_blank" rel="noopener noreferrer">
                 <button className="bg-fleks-blue text-white px-2 py-1 rounded-lg h-8">LÆS MERE</button>
               </a>
-              <a href={`https://www.facebook.com/sharer/sharer.php?u=${slug}`} target="_blank" rel="noopener noreferrer">
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=${link}`} target="_blank" rel="noopener noreferrer">
                 <button className="bg-fleks-gray text-white px-1 py-1 rounded-lg w-8 h-8 flex items-center justify-center">
                   <img src="https://www.fleksjobbernetvaerket.dk/wp-content/uploads/2024/05/icons8-facebook-50.png" alt="facebook" className="w-6 h-6" />
                 </button>
