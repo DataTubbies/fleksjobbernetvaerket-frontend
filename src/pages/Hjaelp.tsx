@@ -16,7 +16,7 @@ export default function Hjaelp() {
       <div className="px-32 py-12">
         <h2 className="text-3xl">Hjælp</h2>
         <br />
-        <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        <div className="prose" dangerouslySetInnerHTML={{ __html: html }}></div>
       </div>
     </div>
   );
