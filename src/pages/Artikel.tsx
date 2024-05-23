@@ -43,7 +43,7 @@ if (!post) {
 
 
 return (
-    <div className="px-32 py-12">
+    <div className="px-16 lg:px-32 py-12">
     <h2 className="text-3xl mb-16">{post.title.rendered}</h2>
     <div className="bg-fleks-yellow h-1 w-full my-8"></div>
     <div className="prose" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
