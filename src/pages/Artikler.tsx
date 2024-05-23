@@ -132,6 +132,17 @@ export default function Artikler() {
             </div>
             <input type="text" placeholder="Søg efter begreb..." value={searchQuery} onChange={handleSearch} className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8" />
           </div>
+          <div className="flex justify-center mt-4">
+            <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
+              Previous
+            </button>
+            <span className="px-4 py-2 mx-2">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
+              Next
+            </button>
+          </div>
           {paginatedPosts.map((post) => (
             <PostEntry key={post.id} title={post.title.rendered} excerpt={post.excerpt.rendered} date={post.date} author={post.author} link={post.link} slug={post.slug} />
           ))}
