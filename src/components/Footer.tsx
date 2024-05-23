@@ -20,7 +20,11 @@ export default function Footer() {
           <Link to={"/hjaelp"}>
             <span className="hover:underline">Hjælp</span>
           </Link>{" "}
-          | InSider |{" "}
+          |{" "}
+          <Link to={"/insider"}>
+            <span className="hover:underline">InSider</span>
+          </Link>{" "}
+          |{" "}
           <Link to={"/om"}>
             <span className="hover:underline">Om...</span>
           </Link>
