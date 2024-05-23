@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchJobs } from "@/api/wp-rest";
 import ColorBox from "@/components/ColorBox";
 
+
 interface Job {
   acf: {
     jobtitel: string;
@@ -40,10 +41,10 @@ export default function Jobmuligheder() {
     <>
       <ColorBox {...colorBoxObj} />
   
-  <div className="grid grid-cols-1 gap-8 py-8 mx-4 sm:mx-12 md:mx-32 my-10 shadow-md rounded-sm">
+  <div className="grid grid-cols-1 gap-8 py-8 mx-4 sm:mx-12 md:mx-32 my-10 rounded-sm">
   
     {jobs.map((job) => (
-      <div className="border-solid border-b-4 border-fleks-grey p-4" key={job.acf.jobtitel}>
+      <div className="p-4 prose" key={job.acf.jobtitel}>
         <p className="font-bold text-xl sm:text-2xl text-fleks-blue-dark my-0">{job.acf.jobtitel}</p>
         <p className="my-4 sm:my-7"><span className="font-semibold">Jobtype: </span>{job.acf.jobtype}</p>
         <p className="my-4 sm:my-7"><span className="font-semibold">Jobreference: </span>{job.acf.jobreference}</p>
@@ -51,11 +52,13 @@ export default function Jobmuligheder() {
         {job.acf.url && (
           <a className="font-semibold text-fleks-blue hover:underline" href={job.acf.url}>Læs mere her</a>
         )}
+        
+        <div className="bg-fleks-blue-dark h-[2px] w-full my-8"></div>
       </div>
     ))}
   
   </div>
   
     </>
-  );
+  )
 }

@@ -67,7 +67,6 @@ export default function Ordbog() {
 
       <br />
 
-      <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
 
       <div className="px-4 sm:px-8 md:px-16 lg:px-32 h-8"></div>
@@ -111,14 +110,13 @@ export default function Ordbog() {
               <p>{ord.acf.betydning}</p>
             </div>
           </div>
-          <div className="bg-fleks-blue h-px w-full my-4"></div>
+          <div className="bg-fleks-blue h-[1px] w-full my-4"></div>
         </div>
       ))}
 
       <br />
       <br />
 
-      <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
       <br />
     </>

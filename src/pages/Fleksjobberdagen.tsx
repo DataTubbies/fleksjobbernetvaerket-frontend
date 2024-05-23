@@ -31,7 +31,7 @@ export default function Fleksjobberdagen() {
         <div id="politikere-grid" className="grid grid-cols-1 px-12 md:grid-cols-3 lg:px-32 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-1 justify-items-center items-center">
           {content.politikere &&
             content.politikere.map((politiker: any, index: number) => (
-              <div key={index} className="flex flex-col bg-fleks-gray w-48 pb-3 h-60 rounded">
+              <div key={index} className="flex flex-col w-48 pb-3 h-60 rounded">
                 <img src={politiker.img} alt="politiker" className="max-w-full max-h-40 object-contain mx-auto py-2" />
                 <p className="text-center inset-x-0 bottom-0">{politiker.text}</p>
               </div>
@@ -40,7 +40,9 @@ export default function Fleksjobberdagen() {
         <div id="partier" className="grid grid-cols-1 px-12 md:grid-cols-2 lg:px-32 lg:grid-cols-4 gap-4 justify-items-center items-center py-3">
           {content.partiLogoer && content.partiLogoer.map((img: string, index: number) => <img key={index} src={img} alt="parti" className="max-w-full max-h-40 object-contain mx-auto" />)}
         </div>
-        <div id="tilmeld" className="grid grid-cols-1 justify-items-center border-t-[3px] px-12 py-5 lg:px-32">
+        <div className="bg-fleks-yellow h-1 w-full my-8 px-32"></div>
+
+        <div id="tilmeld" className="grid grid-cols-1 justify-items-center px-12 py-5 lg:px-32">
           <a href={content.tilmeldArrangorerLink} className="bg-fleks-blue text-white font-bold py-2 px-4 rounded-full">
             Tilmeld dig som arrangør her
           </a>

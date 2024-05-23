@@ -15,6 +15,7 @@ import Cookiepolitik from "./pages/Cookiepolitik";
 
 
 import Links from "./pages/Links";
+import Artikel from "./pages/Artikel";
 
 import Persondatapolitik from "./pages/Persondatapolitik";
 import Hjaelp from "./pages/Hjaelp";
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/vidensportalen" element={<Vidensportalen />} />
         <Route path="/artikler" element={<Artikler />} />
+        <Route path="/artikler/:slug" element={<Artikel />} /> {/* Add this route */}
         <Route path="/fleksjobberdagen" element={<Fleksjobberdagen />} />
         <Route path="/jobmuligheder" element={<Jobmuligheder />} />
         <Route path="/kontakt" element={<KontaktSide />} />

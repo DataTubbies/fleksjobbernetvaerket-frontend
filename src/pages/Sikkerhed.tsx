@@ -1,6 +1,6 @@
 export default function Sikkerhed() {
   return (
-    <div>
+    <div >
       <h1>Sikkerhed</h1>
       <p>Sikkerheden er vigtig for os. Vi har derfor implementeret en række sikkerhedsforanstaltninger for at beskytte dine personlige oplysninger og forhindre uautoriseret adgang.</p>
       <p>Vi anvender SSL-kryptering, som er en sikkerhedsteknologi, der krypterer data, der sendes mellem din browser og vores server. Dette sikrer, at dine oplysninger er beskyttet mod uautoriseret adgang.</p>

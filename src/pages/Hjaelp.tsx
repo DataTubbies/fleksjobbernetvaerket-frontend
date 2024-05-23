@@ -15,7 +15,7 @@ export default function Hjaelp() {
     <div>
       <div className="px-32 py-12">
         <h2 className="text-3xl">Hjælp</h2>
-        <div className="bg-fleks-blue h-1 w-full my-8"></div>
+        <br />
 
         <div className="prose" dangerouslySetInnerHTML={{ __html: html }}></div>
         <div className="bg-fleks-blue h-1 w-full my-8"></div>
