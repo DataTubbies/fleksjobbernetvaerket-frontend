@@ -7,7 +7,11 @@ export default function Persondatapolitik() {
   useEffect(() => {
     async function getPersondatapolitik() {
       const persondatapolitik = await fetchDataById(10166, "pages");
-      setHtml(persondatapolitik.content.rendered.replace(/<p>/g, "<p class='text-lg'>").replace(/<strong>/g, "<strong class='text-2xl'>"));
+      setHtml(
+        persondatapolitik.content.rendered
+          .replace(/<p>/g, "<p class='text-lg'>")
+          .replace(/<strong>/g, "<strong class='text-2xl'>")
+      );
     }
     getPersondatapolitik();
   }, []);
@@ -15,8 +19,10 @@ export default function Persondatapolitik() {
   return (
     <div className="px-32 py-12">
       <h2 className="text-3xl">Persondatapolitik</h2>
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: html }}></div>
+      <div className="bg-fleks-blue h-1 w-full my-8"></div>
+
+      <div className="prose" dangerouslySetInnerHTML={{ __html: html }}></div>
+      <div className="bg-fleks-blue h-1 w-full my-8"></div>
     </div>
   );
 }
