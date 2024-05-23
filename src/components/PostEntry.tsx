@@ -19,10 +19,8 @@ export default function PostEntry({
   title,
   excerpt,
   date,
-  author,
   link,
   slug,
-  img,
 }: PostEntryProps) {
   const [postExcerpt, setPostExcerpt] = useState("");
   const [dateString, setDateString] = useState("");
@@ -52,7 +50,6 @@ export default function PostEntry({
           <p dangerouslySetInnerHTML={{ __html: postExcerpt }}></p>
           <div className="lg:absolute bottom-0">
             <div id="buttons" className="flex gap-1 mt-5">
-              <a href={link} target="_blank" rel="noopener noreferrer">
               <FacebookShareButton
                 url={link}
                 className="bg-fleks-gray text-white px-1 py-1 rounded-lg w-8 h-8 flex items-center justify-center"
