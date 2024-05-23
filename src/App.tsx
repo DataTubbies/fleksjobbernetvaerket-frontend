@@ -15,7 +15,7 @@ import Cookiepolitik from "./pages/Cookiepolitik";
 
 import Links from "./pages/Links";
 import Artikel from "./pages/Artikel";
-
+import Insider from "./pages/Insider";
 import Persondatapolitik from "./pages/Persondatapolitik";
 import Hjaelp from "./pages/Hjaelp";
 import Mangfoldighedsklubben from "./pages/Mangfoldighedsklubben";
@@ -41,6 +41,7 @@ export default function App() {
         <Route path="/persondatapolitik" element={<Persondatapolitik />} />
         <Route path="/cookiepolitik" element={<Cookiepolitik />} />
         <Route path="/hjaelp" element={<Hjaelp />} />
+        <Route path="/insider" element={<Insider />} />
         <Route
           path="/mangfoldighedsklubben"
           element={<Mangfoldighedsklubben />}
