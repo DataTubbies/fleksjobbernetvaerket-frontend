@@ -2,11 +2,6 @@ import { fetchDataByType } from "@/api/wp-rest";
 import ColorBox from "@/components/ColorBox";
 import { useState, useEffect } from "react";
 
-interface politiker {
-  img: string;
-  text: string;
-}
-
 interface FleksjobberdagenType {
   bannerTitle: string;
   bannerText: string;
@@ -19,6 +14,12 @@ interface FleksjobberdagenType {
   tilmeldPunkter: string[];
   tilmeldArrangorerLink: string;
   laesMereLink: string;
+  [key: string]: string | string[] | undefined | politiker[]; // Index signature with more precise type
+}
+
+interface politiker {
+  img: string;
+  text: string;
 }
 
 export default function Fleksjobberdagen() {
@@ -89,66 +90,66 @@ export default function Fleksjobberdagen() {
 }
 
 // There is a duplicate function later. Might aswell combine that to a single..
-function createArrangorerImageArray(data: FleksjobberdagenType) {
-  const imageArray = [];
+function createArrangorerImageArray(data: FleksjobberdagenType): FleksjobberdagenType {
+  const imageArray: string[] = [];
   for (let i = 1; i < 10; i++) {
-    if (data[`arrangorerImg${i}`]) {
-      imageArray.push(data[`arrangorerImg${i}`]);
+    const key = `arrangorerImg${i}`;
+    const img = data[key] as string | undefined; // Use more precise type
+    if (img) {
+      imageArray.push(img);
     }
-    delete data[`arrangorerImg${i}`];
+    delete data[key]; // Use type assertion to handle dynamic keys
   }
-  imageArray.filter((str) => str !== "");
 
   data.arrangorerImages = imageArray;
   return data;
 }
 
-function createPolitikerArray(data: any) {
-  const array = [];
+function createPolitikerArray(data: FleksjobberdagenType): FleksjobberdagenType {
+  const array: politiker[] = [];
   for (let i = 1; i < 20; i++) {
-    const politikerObj = {
-      img: "",
-      text: "",
+    const imgKey = `politikerImg${i}`;
+    const textKey = `politikerText${i}`;
+    const politikerObj: politiker = {
+      img: (data[imgKey] as string) || "",
+      text: (data[textKey] as string) || "",
     };
-    if (data[`politikerImg${i}`]) {
-      politikerObj.img = data[`politikerImg${i}`];
-      politikerObj.text = data[`politikerText${i}`];
-    }
     if (politikerObj.img !== "") {
       array.push(politikerObj);
     }
-    delete data[`politikerText${i}`];
-    delete data[`politikerImg${i}`];
+    delete data[imgKey];
+    delete data[textKey];
   }
-  array.filter((obj) => obj.img !== "");
 
   data.politikere = array;
   return data;
 }
 
-function createPartierImageArray(data: any) {
-  let imageArray = [];
+function createPartierImageArray(data: FleksjobberdagenType): FleksjobberdagenType {
+  const imageArray: string[] = [];
   for (let i = 1; i < 10; i++) {
-    if (data[`partiLogo${i}`]) {
-      imageArray.push(data[`partiLogo${i}`]);
+    const key = `partiLogo${i}`;
+    const img = data[key] as string | undefined; // Use more precise type
+    if (img) {
+      imageArray.push(img);
     }
-    delete data[`partiLogo${i}`];
+    delete data[key]; // Use type assertion to handle dynamic keys
   }
-  imageArray.filter((str) => str !== "");
 
   data.partiLogoer = imageArray;
   return data;
 }
 
-function createtilmeldPunkterArray(data: any) {
-  let punkterArray = [];
+function createtilmeldPunkterArray(data: FleksjobberdagenType): FleksjobberdagenType {
+  const punkterArray: string[] = [];
   for (let i = 1; i < 10; i++) {
-    if (data[`tilmeldPunkt${i}`]) {
-      punkterArray.push(data[`tilmeldPunkt${i}`]);
+    const key = `tilmeldPunkt${i}`;
+    const punkt = data[key] as string | undefined; // Use more precise type
+    if (punkt) {
+      punkterArray.push(punkt);
     }
-    delete data[`tilmeldPunkt${i}`];
+    delete data[key]; // Use type assertion to handle dynamic keys
   }
-  punkterArray.filter((str) => str !== "");
 
   data.tilmeldPunkter = punkterArray;
   return data;
