@@ -25,13 +25,15 @@ export default function HomePage() {
 
   const OPTIONS: EmblaOptionsType = { loop: true };
   return (
-    <>
+    <div className="overflow-x-hidden">
       <EmblaCarousel slides={slides} options={OPTIONS} />
       <CountdownGrid />
       <div className="bg-fleks-gray h-[30rem]">
-        <h2 className="px-32 py-32 text-8xl font-semibold text-white">Reklamer placeholder</h2>
+        <h2 className="px-16 lg:px-32 py-32 text-3xl lg:text-8xl font-semibold text-white">
+          Reklamer placeholder
+        </h2>
       </div>
       <PartnerGrid />
-    </>
+    </div>
   );
 }
