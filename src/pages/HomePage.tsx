@@ -44,11 +44,11 @@ export default function HomePage() {
 
   const OPTIONS: EmblaOptionsType = { loop: true };
   return (
-    <>
+    <div className="overflow-x-hidden">
       <EmblaCarousel slides={slides} options={OPTIONS} />
       <CountdownGrid />
       {ads && <ReklamePrimary primaryName={ads.acf.primaryName} primaryImage={ads.acf.primaryImage} primaryText={ads.acf.primaryText} />}
       <PartnerGrid />
-    </>
+    </div>
   );
 }
