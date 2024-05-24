@@ -26,7 +26,7 @@ export default function PostEntry({ title, excerpt, date, link, slug }: PostEntr
 
   return (
     <NavLink to={`/artikler/${slug}`}>
-      <div className="grid grid-cols-4 py-10 shadow-md rounded-lg px-12 sm:px-24 2xl:px-72">
+      <div className="grid grid-cols-4 py-10 rounded-lg px-12 sm:px-24 2xl:px-72">
         <div className="col-span-2 md:col-span-1">
           <h2 className="text-lg font-bold">{`📅${dateString}`}</h2>
           <img src="https://www.fleksjobbernetvaerket.dk/wp-content/uploads/2023/10/Udvalgtbillede-150x150.png" alt="author" className="rounded w-44" />
