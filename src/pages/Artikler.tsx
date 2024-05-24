@@ -1,7 +1,8 @@
+import { fetchAllPosts } from "@/api/wp-rest";
 import { useState, useEffect } from "react";
 import PostEntry from "@/components/PostEntry";
 
-export interface PostType {
+interface PostType {
   id: number;
   title: {
     rendered: string;
@@ -22,7 +23,8 @@ const Loading = () => (
   </div>
 );
 
-export default function Artikler({ posts }: { posts: PostType[] }) {
+export default function Artikler() {
+  const [posts, setPosts] = useState<PostType[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
   const [searchedPosts, setSearchedPosts] = useState<PostType[]>([]);
@@ -31,15 +33,6 @@ export default function Artikler({ posts }: { posts: PostType[] }) {
   const [loading, setLoading] = useState(true); // Loading state
 
   const postsPerPage = 10;
-
-  useEffect(() => {
-    async function getPosts() {
-      setLoading(true); // Start loading
-      setTotalPages(Math.ceil(posts.length / postsPerPage));
-      setLoading(false); // Stop loading
-    }
-    getPosts();
-  }, []);
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -82,7 +75,21 @@ export default function Artikler({ posts }: { posts: PostType[] }) {
   };
 
   useEffect(() => {
-    const newPosts = posts.filter((post) => post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase()));
+    async function getPosts() {
+      setLoading(true); // Start loading
+      const data = await fetchAllPosts();
+      setPosts(data);
+      setSearchedPosts(data);
+      setTotalPages(Math.ceil(data.length / postsPerPage));
+      setLoading(false); // Stop loading
+    }
+    getPosts();
+  }, []);
+
+  useEffect(() => {
+    const newPosts = posts.filter((post) =>
+      post.title.rendered.toLowerCase().includes(searchQuery.toLowerCase())
+    );
     setSearchedPosts(newPosts);
     setCurrentPage(1);
     setTotalPages(Math.ceil(newPosts.length / postsPerPage));
@@ -100,124 +107,95 @@ export default function Artikler({ posts }: { posts: PostType[] }) {
     }
   };
 
-  const paginatedPosts = searchedPosts.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+  const paginatedPosts = searchedPosts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage
+  );
 
   return (
     <div>
       {loading ? (
         <Loading />
       ) : (
-
-        <div className="relative">
-          <div className="px-16 lg:px-32 pt-16">
-            <h3 className="text-fleks-blue-dark text-3xl font-semibold mb-6 z-50">
-              OVERSIGT OVER ALLE ARTIKLER
-            </h3>
-          </div>
-          <div className="bg-fleks-blue h-64 w-64 rounded-bl-full absolute top-0 right-0"></div>
-
+        <>
           <div
-            id="filtering "
-            className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4 z-50"
+            id="filtering"
+            className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4"
           >
             <div className="flex" onClick={handleSort}>
-              <p className="select-none">Titel</p>
               <img
                 src="../../public/images/sortArrows.svg"
                 alt="Sort Arrows"
                 className="ml-2 cursor-pointer w-5 h-5 "
               />
+              <p className="select-none">Titel</p>
             </div>
             <div className="flex" onClick={handleDateSort}>
-              <p className="select-none">Dato</p>
               <img
                 src="../../public/images/sortArrows.svg"
                 alt="Sort Arrows"
                 className="ml-2 cursor-pointer w-5 h-5 "
               />
+              <p className="select-none">Dato</p>
             </div>
             <input
               type="text"
               placeholder="Søg efter titel..."
               value={searchQuery}
               onChange={handleSearch}
-              className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8 z-50"
+              className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8"
             />
-
-        <>
-          <div id="filtering" className="flex justify-center items-center px-12 lg:px-32 w-30 gap-4">
-            <div className="flex" onClick={handleSort}>
-              <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer w-5 h-5 " />
-              <p className="select-none">Titel</p>
-            </div>
-            <div className="flex" onClick={handleDateSort}>
-              <img src="../../public/images/sortArrows.svg" alt="Sort Arrows" className="ml-2 cursor-pointer w-5 h-5 " />
-              <p className="select-none">Dato</p>
-            </div>
-            <input type="text" placeholder="Søg efter titel..." value={searchQuery} onChange={handleSearch} className="border rounded px-2 hover:border-fleks-blue focus:border-fleks-blue focus:outline-none h-8" />
-
           </div>
-
           <div className="flex justify-center mt-4">
-
             <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50 z-50"
+              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
             >
-
-            <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-
               ←
             </button>
             <span className="px-4 py-2 mx-2">
               Side {currentPage} af {totalPages}
             </span>
-
             <button
               onClick={goToNextPage}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 mx-2 border rounded disabled:opacity-50 z-50"
+              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
             >
-
-            <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
-
               →
             </button>
           </div>
-          <div className="bg-fleks-blue h-1 w-full my-8 px-16 lg:px-32"></div>
-
           {paginatedPosts.map((post) => (
-
-            <>
-              <PostEntry
-                key={post.id}
-                title={post.title.rendered}
-                excerpt={post.excerpt.rendered}
-                date={post.date}
-                author={post.author}
-                link={post.link}
-                slug={post.slug}
-              />
-
-              <div className="bg-fleks-blue h-1 w-full my-4 px-16 lg:px-32"></div>
-            </>
-
-            <PostEntry key={post.id} title={post.title.rendered} excerpt={post.excerpt.rendered} date={post.date} author={post.author} link={post.link} slug={post.slug} />
-
+            <PostEntry
+              key={post.id}
+              title={post.title.rendered}
+              excerpt={post.excerpt.rendered}
+              date={post.date}
+              author={post.author}
+              link={post.link}
+              slug={post.slug}
+            />
           ))}
           <div className="flex justify-center mt-4">
-            <button onClick={goToPreviousPage} disabled={currentPage === 1} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
+            <button
+              onClick={goToPreviousPage}
+              disabled={currentPage === 1}
+              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
+            >
               ←
             </button>
             <span className="px-4 py-2 mx-2">
               Side {currentPage} af {totalPages}
             </span>
-            <button onClick={goToNextPage} disabled={currentPage === totalPages} className="px-4 py-2 mx-2 border rounded disabled:opacity-50">
+            <button
+              onClick={goToNextPage}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 mx-2 border rounded disabled:opacity-50"
+            >
               →
             </button>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
