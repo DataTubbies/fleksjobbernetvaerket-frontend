@@ -17,7 +17,7 @@ export default function Cookiepolitik() {
   }, []);
 
   return (
-    <div className="px-32 py-12">
+    <div className="px-16 lg:px-32 py-12  ">
       <h2 className="text-3xl">Cookiepolitik</h2>
       <div className="bg-fleks-blue h-1 w-full my-8"></div>
 
