@@ -16,10 +16,11 @@ export interface Slide {
 
 export interface AdProps {
   acf: {
-    primaryName: string;
-    primaryImage: string;
-    primaryText: string;
+    primaryName: string | undefined;
+    primaryImage: string | undefined;
+    primaryText: string | undefined;
     partners: Partner[];
+    [key: string]: string | Partner[] | undefined;
   };
 }
 
@@ -66,7 +67,7 @@ export default function HomePage() {
   );
 }
 
-function createPartnerArray(data: AdProps): AdProps {
+function createPartnerArray(data: AdProps["acf"]): AdProps["acf"] {
   const array: Partner[] = [];
   for (let i = 1; i < 20; i++) {
     const nameKey = `partnerName${i}`;

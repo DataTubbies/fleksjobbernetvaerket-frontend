@@ -1,7 +1,7 @@
 interface AdPrimaryProps {
-  primaryName: string;
-  primaryImage: string;
-  primaryText: string;
+  primaryName: string | undefined;
+  primaryImage: string | undefined;
+  primaryText: string | undefined;
 }
 
 export default function AdPrimary({ primaryName, primaryImage, primaryText }: AdPrimaryProps) {
