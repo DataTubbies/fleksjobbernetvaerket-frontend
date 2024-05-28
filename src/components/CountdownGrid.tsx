@@ -60,19 +60,19 @@ const CountdownGrid: React.FC = () => {
             </ul>
             <div className="px-8 mt-12 flex justify-center gap-4">
               <a href="https://www.facebook.com/fleksjob">
-                <img className="w-14" src="../../public/images/facebook.svg" alt="" />
+                <img className="w-14" src="../../images/facebook.svg" alt="" />
               </a>
               <a href="https://www.fleksjobbernetvaerket.dk/feed/">
-                <img className="w-14" src="../../public/images/rs-feed.svg" alt="" />
+                <img className="w-14" src="../../images/rs-feed.svg" alt="" />
               </a>
               <a href="https://www.instagram.com/fleksjob/">
-                <img className="w-14" src="../../public/images/instagram.svg" alt="" />
+                <img className="w-14" src="../../images/instagram.svg" alt="" />
               </a>
               <a href="https://www.youtube.com/channel/UC_mtsjFmE8zpZJTDUSKwybA">
-                <img className="w-14" src="../../public/images/youtube.svg" alt="" />
+                <img className="w-14" src="../../images/youtube.svg" alt="" />
               </a>
               <a href="https://www.linkedin.com/company/fleksjob/">
-              <img className="w-14" src="../../public/images/linkedin.svg" alt="" />
+                <img className="w-14" src="../../images/linkedin.svg" alt="" />
               </a>
             </div>
           </div>
@@ -84,7 +84,6 @@ const CountdownGrid: React.FC = () => {
               <p>
                 {timeLeft.days} : {timeLeft.hours} : {timeLeft.minutes} : {timeLeft.seconds}
               </p>
-              <p>D : T : M : S</p>
               <p className="text-3xl">Dage til næste omgang!</p>
             </div>
             <div className="p-8 text-3xl font-semibold">
