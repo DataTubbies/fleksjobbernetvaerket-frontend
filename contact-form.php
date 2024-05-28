@@ -25,9 +25,9 @@ function handle_contact_form() {
     error_log('Received Form Data: ' . print_r($post_data, true));
 
     // Prepare email
-    $to = 'yousserah@gmail.com';
-    $email_subject = 'New Contact Form Submission: ' . $subject;
-    $body = "Name: $firstName $lastName\nCompany: $company\nEmail: $email\nPhone: $phone\nMessage: $message";
+    $to = 'info@fleksjobbernetvaerket.dk';
+    $email_subject = 'Ny kontaktform modtaget på Fleksjobbernetværket: ' . $subject;
+    $body = "Navn: $firstName $lastName\nVirksomhed/Organisation: $company\nEmail: $email\nTelefon: $phone\nEmne: $subject\nBesked: $message";
     $headers = array('Content-Type: text/plain; charset=UTF-8');
 
     // Log email content to debug (optional, remove in production)
