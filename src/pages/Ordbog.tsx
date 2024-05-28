@@ -13,6 +13,7 @@ export default function Ordbog() {
   const [ordbog, setOrdbog] = useState([] as begreb[]);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [isFlipped, setIsFlipped] = useState(false);
 
   useEffect(() => {
     async function getOrdbog() {
@@ -37,6 +38,7 @@ export default function Ordbog() {
   const handleSort = () => {
     const newDirection = sortDirection === "asc" ? "desc" : "asc";
     setSortDirection(newDirection);
+    setIsFlipped(!isFlipped);
 
     const sortedOrdbog = [...ordbog].sort((a, b) => {
       const ordA = a.acf.ord.toLowerCase();
@@ -66,24 +68,23 @@ export default function Ordbog() {
       />
 
       <br />
-
-      <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
 
       <div className="px-4 sm:px-8 md:px-16 lg:px-32 h-8"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-between px-4 sm:px-8 md:px-16 lg:px-32 py-4 gap-4 md:gap-10">
-        <div className="flex">
+        <div className="flex items-center">
           <h3 className="text-lg md:text-xl font-semibold">ORD/BEGREB</h3>
           <img
             src="../../public/images/sortArrows.svg"
             alt="Sort Arrows"
             onClick={handleSort}
-            className="ml-2 cursor-pointer"
+            className={`ml-2 cursor-pointer w-5 h-5 transition-transform duration-0 ${
+              isFlipped ? "transform rotate-180" : ""
+            }`}
           />
         </div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-32">
-          <div className="flex">
+          <div className="flex items-center">
             <h3 className="text-md md:text-xl font-normal md:font-semibold">
               BETYDNING/FORKLARING
             </h3>
@@ -102,7 +103,7 @@ export default function Ordbog() {
       <br />
 
       {filteredOrdbog.map((ord, index) => (
-        <div className=" px-16 md:px-16 lg:px-32" key={index}>
+        <div className="px-16 md:px-16 lg:px-32" key={index}>
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
             <div className="md:w-1/2 md:pr-4">
               <h2 className="font-semibold">{ord.acf.ord}</h2>
@@ -111,14 +112,12 @@ export default function Ordbog() {
               <p>{ord.acf.betydning}</p>
             </div>
           </div>
-          <div className="bg-fleks-blue h-px w-full my-4"></div>
+          <div className="bg-fleks-blue h-[1px] w-full my-4"></div>
         </div>
       ))}
 
       <br />
       <br />
-
-      <div className="bg-fleks-blue-light h-2 w-full"></div>
       <br />
       <br />
     </>
